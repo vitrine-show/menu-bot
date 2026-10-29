@@ -1,409 +1,416 @@
-/* Cardápio — Esquina do Espeto. Edite aqui nomes, preços e descrições. */
-window.MENU = [
-  { id: "espetinhos", nome: "Espetinhos", icone: "🍢", chamada: "Na brasa, do jeito certo", grupos: [{ itens: [
-    ["Camarão", 16], ["Picanha", 30], ["Contra Filé", 14], ["Medalhão de Queijo", 12], ["Porco", 12],
-    ["Linguiça Caseira", 12], ["Tulipa", 12], ["Coxinha da Asa", 12], ["Romeu e Julieta", 14], ["Kafta", 12],
-    ["Almôndega Recheada", 12], ["Medalhão de Frango", 12], ["Coração", 12], ["Coração com Bacon", 12],
-    ["Mussarela", 12], ["Pão de Alho", 8]
-  ]}]},
-  { id: "porcoes", nome: "Porções", icone: "🍖", chamada: "Pra dividir com a mesa", grupos: [{ itens: [
-    ["Picanha na Chapa 400gr", 89.9], ["Picanha 400gr na Mandioca 400gr", 119.9], ["Picanha 400gr com Fritas 400g", 119.9],
-    ["Contra Filé 400gr", 69.9], ["Contra Filé 400gr com Fritas 400gr", 89.9], ["Filé de Tilápia 400gr", 49.9],
-    ["Filé de Tilápia 400gr com Fritas 400gr", 64.9], ["Fígado Acebolado 250gr", 19.9], ["Fígado Acebolado 500gr", 29.9],
-    ["Fritas 500gr", 25], ["Mandioquinha Crocante 300gr", 15.9], ["Mandioquinha Crocante 300gr com Torresmo 300gr", 19.9],
-    ["Anel de Cebola 10 unid.", 12.9], ["Torresmo 300gr", 15.9], ["Macarrão na Chapa 500gr", 28],
-    ["Porção de Arroz com Alho", 15.9], ["Acréscimo de Bacon e Queijo", 9.9], ["Purê de Batata 300gr", 8], ["Vinagrete 300gr", 8]
-  ]}]},
-  { id: "hamburguer", nome: "Hambúrguer", icone: "🍔", chamada: "Artesanal, feito na brasa", grupos: [{ itens: [
-    ["Hambúrguer Artesanal feito na Brasa", 25, "Pão com gergelim, 120gr de carne bovina feita na brasa, bacon, muçarela, cebola, tomate e alface."]
-  ]}]},
-  { id: "jantinha", nome: "Jantinha", icone: "🍛", chamada: "Prato feito caprichado", grupos: [
-    { itens: [
-      ["Jantinha com 1 Espeto", 30, "Arroz branco com alho frito, purê de batata, farofa da casa e um espetinho de sua preferência. Opções de espeto no cardápio. Observação: exceto boi, picanha e camarão."],
-      ["Jantinha com 2 Espetos", 35, "Arroz branco com alho frito, purê de batata, farofa da casa e dois espetinhos de sua preferência. Opções de espeto no cardápio. Observação: exceto boi, picanha e camarão."],
-      ["Jantinha com 2 Espetos de Boi", 38, "Arroz branco com alho frito, purê de batata, farofa da casa e dois espetinhos de sua preferência. Opções de espeto no cardápio. Observação: exceto picanha e camarão."]
-    ]},
-    { id: "strogonoff", titulo: "Strogonoff", itens: [
-      ["Strogonoff de Carne Completo 500gr", 29.9, "Suculenta iscas de carne envolvidas por molho de strogonoff cremoso, arroz branco com alho frito e batata palha. Obs: Não possui champignon"],
-      ["Strogonoff de Frango Completo 500gr", 29.9, "Suculentas iscas de frango envolvidos por um molho de strogonoff cremoso, arroz branco com alho frito, e batata palha. Obs: Não possui champignon"]
-    ]}
-  ]},
-  { id: "natural", nome: "Natural", icone: "🥥", chamada: "Água de coco e sucos", grupos: [{ itens: [
-    ["Água de Coco", 9],
-    { nome: "Suco de Frutas", desc: "Consulte as opções disponíveis", variacoes: [["Copo 330ml", 12], ["Jarra 1L", 25]] }
-  ]}]},
-  { id: "bebidas", nome: "Bebidas", icone: "🥤", chamada: "Refri, água e energético", grupos: [{ itens: [
-    ["Coca-Cola KS", 7], ["Sprite KS", 7], ["Fanta KS", 7], ["Coca-Cola Lata 350ml", 8], ["Guaraná Lata 350ml", 7],
-    ["Fanta Lata 350ml", 7], ["Sprite Lata 350ml", 7], ["Coca-Cola 220ml", 5], ["Fanta 220ml", 5], ["Guarapan 220ml", 5],
-    ["Coca-Cola 1L", 10], ["Guaraná 1L", 9], ["Coca-Cola 2L", 17], ["Guaraná 2L", 13], ["Guaraná Zero 2L", 13],
-    ["Fanta 2L", 12], ["Limoneto", 8], ["Suco Lata 290ml", 7], ["Suco Caixa 1L", 13], ["Água Mineral", 4],
-    ["Água com Gás", 5], ["Red Bull 250ml", 13], ["Monster 473ml", 14]
-  ]}]},
-  { id: "cervejas", nome: "Cervejas", icone: "🍺", chamada: "Garrafa, latão e long neck", grupos: [
-    { id: "garrafa", titulo: "Garrafa 600ml", itens: [
-      ["Heineken 600ml", 16], ["Corona 600ml", 19], ["Stella Pure Gold 600ml", 19], ["Original 600ml", 14],
-      ["Spaten 600ml", 14], ["Brahma 600ml", 12], ["Eisenbahn 600ml", 12]
-    ]},
-    { id: "latao", titulo: "Latão", itens: [
-      ["Heineken Latão", 12], ["Original Latão", 8], ["Brahma Latão", 8], ["Skol Latão", 7], ["Kaiser Latão", 6]
-    ]},
-    { id: "longneck", titulo: "Long Neck", itens: [
-      ["Corona Long Neck", 12], ["Heineken Long Neck", 12], ["Stella Pure Gold Long Neck", 12], ["Skol Beats Long Neck", 12],
-      ["Heineken Zero Long Neck", 12], ["Budweiser Zero Long Neck", 9], ["Syn Lemon Ice Long Neck", 8], ["Smirnoff Ice Long Neck", 12]
-    ]}
-  ]},
-  { id: "drinks", nome: "Drinks", icone: "🍹", chamada: "Caipirinha, copão e cia.", grupos: [{ itens: [
-    ["Caipirinha", 16], ["Copão 1 Dose", 25], ["Copão 2 Doses", 30], ["Mascate", 16], ["Bang Bang", 15]
-  ]}]},
-  { id: "doses", nome: "Doses", icone: "🥃", chamada: "Cachaça, whisky, gin e mais", grupos: [{ itens: [
-    ["Cachaça", 6], ["Para Tudo", 5], ["Gin Tanqueray", 18], ["Gin Gordon's", 15], ["Whisky Buchanan", 20],
-    ["Whisky Old Parr 12 Anos", 18], ["Whisky Jack Daniels", 18], ["Whisky Red Label", 16],
-    ["Campari com Laranja ou Limão", 15], ["Conhaque Dreher", 6], ["Conhaque Presidente", 6],
-    ["Licor 43 Tradicional", 16], ["Tequila", 15]
-  ]}]}
-];
-window.WHATSAPP = "5531996202280";
-
 (function () {
   "use strict";
   var MENU = window.MENU || [];
   var PHONE = window.WHATSAPP || "5531996202280";
-  var STORE_KEY = "esquina-do-espeto:pedido:v1";
-  var $ = function (s) { return document.querySelector(s); };
+  var STORE_KEY = "esquina-do-espeto:sacola:v2";
+  var DESKTOP = window.matchMedia("(min-width: 1024px)");
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
 
-  /* ---------- Dados normalizados ---------- */
-  var PRODUCTS = {}; // key -> {nome, preco, cat}
+  /* ---------- Ícones (SVG de linha, desenhados aqui) ---------- */
+  var P = {
+    menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+    search: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>',
+    bag: '<path d="M5.5 8h13l-1 11.2a1.5 1.5 0 0 1-1.5 1.3H8a1.5 1.5 0 0 1-1.5-1.3Z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>',
+    x: '<path d="M6 6l12 12M18 6 6 18"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    minus: '<path d="M5 12h14"/>',
+    trash: '<path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l.8 11.6A1.5 1.5 0 0 0 8.8 20h6.4a1.5 1.5 0 0 0 1.5-1.4L17.5 7M9.5 7V5.5A1.5 1.5 0 0 1 11 4h2a1.5 1.5 0 0 1 1.5 1.5V7"/>',
+    chev: '<path d="m9 6 6 6-6 6"/>',
+    home: '<path d="M4 11 12 4l8 7"/><path d="M6 9.5V19a1 1 0 0 0 1 1h3.5v-5h3v5H17a1 1 0 0 0 1-1V9.5"/>',
+    whatsapp: '<path d="M4.5 19.5l1.1-3.6A8 8 0 1 1 8.4 18.6Z"/><path d="M9.2 8.6c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.5-2.1.3a8 8 0 0 1-5.3-5.3c-.2-.7-.1-1.5.3-2.1Z"/>',
+    espeto: '<path d="M3.5 20.5 20.5 3.5"/><rect x="5.6" y="12.4" width="6" height="6" rx="2" transform="rotate(45 8.6 15.4)"/><rect x="9.6" y="8.4" width="6" height="6" rx="2" transform="rotate(45 12.6 11.4)"/><rect x="13.8" y="4.6" width="5" height="5" rx="1.8" transform="rotate(45 16.3 7.1)"/>',
+    porcao: '<path d="M3 12h18a9 8 0 0 1-18 0Z"/><path d="M8 8.5c0-1.3 1-1.7 1-3M12 8.5c0-1.3 1-1.7 1-3M16 8.5c0-1.3 1-1.7 1-3"/>',
+    burger: '<path d="M4 11c0-3.9 3.6-6.5 8-6.5s8 2.6 8 6.5Z"/><path d="M3 14.5c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M4.5 18h15a0 0 0 0 1 0 0 2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2Z"/>',
+    prato: '<circle cx="14.5" cy="12" r="6.5"/><circle cx="14.5" cy="12" r="3.2"/><path d="M3 4v4.5A2 2 0 0 0 5 10.5V20M5 4v4M7 4v4.5a2 2 0 0 1-2 2"/>',
+    panela: '<path d="M4.5 10.5h15v5.5a4 4 0 0 1-4 4h-7a4 4 0 0 1-4-4Z"/><path d="M2.5 10.5h19M9.5 7.5c0-1 .8-1.4.8-2.5M14 7.5c0-1 .8-1.4.8-2.5"/>',
+    copo: '<path d="M6 8.5h12l-1.4 11a1.5 1.5 0 0 1-1.5 1.3H8.9a1.5 1.5 0 0 1-1.5-1.3Z"/><path d="m12.5 8.5 2.2-5.5H18"/><path d="M6.6 13h10.8"/>',
+    lata: '<path d="M7.5 5.5h9l.5 2v11l-.5 2h-9l-.5-2v-11Z"/><path d="M7 8h10M7 18h10M10 3.5h4"/>',
+    caneca: '<path d="M5 9h10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M15 11.5h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/><path d="M5 9a2.5 2.5 0 0 1 2.3-3.5A3 3 0 0 1 12.6 5 2.5 2.5 0 0 1 15 9"/><path d="M8.5 12.5v5M11.5 12.5v5"/>',
+    taca: '<path d="M4.5 4.5h15L12 13Z"/><path d="M12 13v7M8.5 20h7M7 7.3h10"/>',
+    dose: '<path d="M6.5 5h11l-1.5 14a1.3 1.3 0 0 1-1.3 1.1H9.3A1.3 1.3 0 0 1 8 19Z"/><path d="M7.2 11h9.6"/>'
+  };
+  function icon(n, cls) { return '<svg class="i' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + (P[n] || "") + "</svg>"; }
+  function paintIcons(root) {
+    $$("[data-icon]", root).forEach(function (el) {
+      if (el.getAttribute("data-painted")) return;
+      el.insertAdjacentHTML("afterbegin", icon(el.getAttribute("data-icon")));
+      el.setAttribute("data-painted", "1");
+    });
+  }
+
+  /* ---------- Dados ---------- */
+  var PRODUCTS = {};   // chave -> { nome, preco, cat }
+  var ITEMS = {};      // chave do item -> item
   MENU.forEach(function (cat) {
-    cat.total = 0;
+    cat.total = 0; cat.min = Infinity;
     cat.grupos.forEach(function (g, gi) {
       g.itens = g.itens.map(function (raw, ii) {
         var it = Array.isArray(raw) ? { nome: raw[0], preco: raw[1], desc: raw[2] || "" } : raw;
-        it.key = cat.id + "-" + gi + "-" + ii;
+        it.key = cat.id + "-" + gi + "-" + ii; it.cat = cat;
         if (it.variacoes) {
           it.variacoes = it.variacoes.map(function (v, vi) {
             var vv = { nome: v[0], preco: v[1], key: it.key + "-v" + vi };
             PRODUCTS[vv.key] = { nome: it.nome + " (" + vv.nome + ")", preco: vv.preco, cat: cat.nome };
+            cat.min = Math.min(cat.min, vv.preco);
             return vv;
           });
+          it.preco = it.variacoes[0].preco;
         } else {
           PRODUCTS[it.key] = { nome: it.nome, preco: it.preco, cat: cat.nome };
+          cat.min = Math.min(cat.min, it.preco);
         }
-        cat.total++;
+        ITEMS[it.key] = it; cat.total++;
         return it;
       });
     });
   });
 
-  var brl = function (n) {
-    return "R$ " + n.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
-  var esc = function (s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-  };
+  var brl = function (n) { return "R$ " + n.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, "."); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var norm = function (s) { return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); };
+  var plural = function (n, a, b) { return n + " " + (n === 1 ? a : b); };
 
-  /* ---------- Carrinho ---------- */
-  var cart = { itens: {}, ordem: [], nome: "", obs: "" };
+  /* ---------- Sacola ---------- */
+  var bag = { itens: {}, ordem: [], nome: "", obs: "" };
   try {
-    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-    if (saved && saved.itens) {
-      cart = saved;
-      cart.ordem = (cart.ordem || []).filter(function (k) { return PRODUCTS[k] && cart.itens[k] > 0; });
-      Object.keys(cart.itens).forEach(function (k) { if (!PRODUCTS[k]) delete cart.itens[k]; });
+    var s = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if (s && s.itens) {
+      bag = s;
+      bag.ordem = (bag.ordem || []).filter(function (k) { return PRODUCTS[k] && bag.itens[k] > 0; });
+      Object.keys(bag.itens).forEach(function (k) { if (bag.ordem.indexOf(k) < 0) delete bag.itens[k]; });
     }
-  } catch (e) { /* sem localStorage */ }
-  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(cart)); } catch (e) {} }
-  function qty(k) { return cart.itens[k] || 0; }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(bag)); } catch (e) {} }
+  function qty(k) { return bag.itens[k] || 0; }
   function setQty(k, n) {
     n = Math.max(0, Math.min(99, n));
-    if (n === 0) {
-      delete cart.itens[k];
-      cart.ordem = cart.ordem.filter(function (x) { return x !== k; });
-    } else {
-      if (!cart.itens[k]) cart.ordem.push(k);
-      cart.itens[k] = n;
-    }
-    save();
-    refresh();
+    var before = totals().q;
+    if (n === 0) { delete bag.itens[k]; bag.ordem = bag.ordem.filter(function (x) { return x !== k; }); }
+    else { if (!bag.itens[k]) bag.ordem.push(k); bag.itens[k] = n; }
+    save(); refresh(totals().q > before);
   }
   function totals() {
     var q = 0, t = 0;
-    cart.ordem.forEach(function (k) { q += cart.itens[k]; t += cart.itens[k] * PRODUCTS[k].preco; });
+    bag.ordem.forEach(function (k) { q += bag.itens[k]; t += bag.itens[k] * PRODUCTS[k].preco; });
     return { q: q, t: Math.round(t * 100) / 100 };
   }
 
-  /* ---------- Controles ---------- */
-  function control(k, label) {
+  /* ---------- Controles de quantidade ---------- */
+  function stepper(k, label) {
     var n = qty(k);
-    if (!n) {
-      return '<button class="btn-add" data-act="add" data-key="' + k + '" aria-label="Adicionar ' + esc(label) + '">+ Adicionar</button>';
-    }
-    return '<div class="stepper" role="group" aria-label="Quantidade de ' + esc(label) + '">' +
-      '<button class="minus" data-act="dec" data-key="' + k + '" aria-label="Remover um">−</button>' +
-      "<output>" + n + "</output>" +
-      '<button data-act="inc" data-key="' + k + '" aria-label="Adicionar mais um">+</button></div>';
+    return '<div class="step" role="group" aria-label="Quantidade de ' + esc(label) + '">' +
+      '<button type="button" class="' + (n === 1 ? "rm" : "") + '" data-act="dec" data-key="' + k + '" aria-label="' + (n === 1 ? "Remover " : "Diminuir ") + esc(label) + '">' + icon(n === 1 ? "trash" : "minus") + "</button>" +
+      '<output class="num">' + n + "</output>" +
+      '<button type="button" data-act="inc" data-key="' + k + '" aria-label="Adicionar mais ' + esc(label) + '">' + icon("plus") + "</button></div>";
+  }
+  function control(k, label) {
+    if (!qty(k)) return '<button type="button" class="add" data-act="inc" data-key="' + k + '" aria-label="Adicionar ' + esc(label) + '">' + icon("plus") + "</button>";
+    return stepper(k, label);
+  }
+  function varControl(it) {
+    var n = it.variacoes.reduce(function (a, v) { return a + qty(v.key); }, 0);
+    return '<button type="button" class="add" data-act="opts" data-item="' + it.key + '" aria-label="Escolher tamanho de ' + esc(it.nome) + '">' + icon("plus") + "</button>" +
+      (n ? '<span class="vqty">' + n + " na sacola</span>" : "");
   }
 
-  /* ---------- Home ---------- */
+  /* ---------- Início ---------- */
+  function catIcon(c) { return c.icone; }
   function renderHome() {
-    var html = "";
-    MENU.forEach(function (c, i) {
-      html += '<li><a class="cat-card' + (i % 3 === 1 ? " alt" : "") + '" href="#/' + c.id + '">' +
-        '<span class="ce" aria-hidden="true">' + c.icone + "</span>" +
-        "<span><strong>" + esc(c.nome) + "</strong><small>" + esc(c.chamada) + "</small></span>" +
-        '<span class="cnt">' + c.total + (c.total === 1 ? " item" : " itens") + "</span></a></li>";
-      if (c.id === "jantinha") {
-        html += '<li><a class="cat-card alt" href="#/jantinha/strogonoff">' +
-          '<span class="ce" aria-hidden="true">🥘</span>' +
-          "<span><strong>Strogonoff</strong><small>Carne ou frango, completo</small></span>" +
-          '<span class="cnt">2 itens · em Jantinha</span></a></li>';
-      }
-    });
-    $("#catGrid").innerHTML = html;
-
-    var d = "";
+    var h = "", d = "";
     MENU.forEach(function (c) {
-      d += '<li><a href="#/' + c.id + '" data-cat="' + c.id + '"><span class="de" aria-hidden="true">' + c.icone + "</span>" + esc(c.nome) + "</a></li>";
+      h += '<li><a class="cat-link" href="#/cardapio/' + c.id + '"><span class="cat-ico">' + icon(catIcon(c)) + '</span>' +
+        '<span class="cat-txt"><strong>' + esc(c.nome) + "</strong><span>" + plural(c.total, "item", "itens") + " · a partir de " + brl(c.min) + "</span></span>" + icon("chev", "chev") + "</a></li>";
+      d += '<li><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + '<span class="n">' + c.total + "</span></a></li>";
       c.grupos.forEach(function (g) {
-        if (g.id && c.id === "jantinha") d += '<li class="sub"><a href="#/' + c.id + "/" + g.id + '">↳ ' + esc(g.titulo) + "</a></li>";
+        if (g.id === "strogonoff") {
+          h += '<li class="sub"><a class="cat-link" href="#/cardapio/strogonoff"><span class="cat-ico">' + icon("panela") + '</span>' +
+            '<span class="cat-txt"><strong>Strogonoff</strong><span>Carne ou frango · em Jantinha</span></span>' + icon("chev", "chev") + "</a></li>";
+        }
+        if (g.id) d += '<li class="sub"><a href="#/cardapio/' + g.id + '">' + esc(g.titulo) + "</a></li>";
       });
     });
+    $("#catList").innerHTML = h;
     $("#drawerList").innerHTML = d;
   }
 
-  /* ---------- Categoria ---------- */
-  function renderCat(cat) {
-    $("#catEmoji").textContent = cat.icone;
-    $("#catTitle").textContent = cat.nome;
-    $("#catSub").textContent = cat.chamada;
-    $("#topTitle").textContent = cat.nome;
-
-    var subs = cat.grupos.filter(function (g) { return g.id; });
-    var chips = $("#chips");
-    if (subs.length) {
-      var ch = "";
-      if (!cat.grupos[0].id) ch += '<a href="#/' + cat.id + '">' + esc(cat.nome) + "</a>";
-      subs.forEach(function (g) { ch += '<a href="#/' + cat.id + "/" + g.id + '">' + esc(g.titulo) + "</a>"; });
-      chips.innerHTML = ch;
-      chips.hidden = false;
-    } else { chips.hidden = true; chips.innerHTML = ""; }
-
-    var html = "";
-    cat.grupos.forEach(function (g) {
-      if (g.titulo) html += '<h2 class="grp-title" id="sub-' + g.id + '">' + esc(g.titulo) + "</h2>";
-      else if (subs.length) html += '<div id="sub-top"></div>';
-      html += '<ul class="items">';
-      g.itens.forEach(function (it) {
-        if (it.variacoes) {
-          var anyIn = it.variacoes.some(function (v) { return qty(v.key); });
-          html += '<li class="item' + (anyIn ? " in" : "") + '" data-item="' + it.key + '"><div class="item-top"><div>' +
-            "<h3>" + esc(it.nome) + "</h3>" + (it.desc ? '<p class="note">' + esc(it.desc) + "</p>" : "") + "</div></div>";
-          it.variacoes.forEach(function (v) {
-            html += '<div class="var"><div class="var-info"><b>' + esc(v.nome) + "</b><span>" + brl(v.preco) + "</span></div>" +
-              '<div data-ctl="' + v.key + '">' + control(v.key, it.nome + " " + v.nome) + "</div></div>";
-          });
-          html += "</li>";
-        } else {
-          html += '<li class="item' + (qty(it.key) ? " in" : "") + '" data-item="' + it.key + '"><div class="item-top"><div>' +
-            "<h3>" + esc(it.nome) + "</h3>" + (it.desc ? '<p class="desc">' + esc(it.desc) + "</p>" : "") + "</div>" +
-            '<span class="price">' + brl(it.preco) + "</span></div>" +
-            '<div class="item-actions" data-ctl="' + it.key + '">' + control(it.key, it.nome) + "</div></li>";
-        }
+  /* ---------- Cardápio ---------- */
+  function rowHTML(it, showCat) {
+    var cls = "row";
+    var inBag = it.variacoes ? it.variacoes.some(function (v) { return qty(v.key); }) : qty(it.key);
+    if (inBag) cls += " in";
+    var price = it.variacoes
+      ? '<span class="row-price"><small>a partir de</small>' + brl(it.variacoes[0].preco) + "</span>"
+      : '<span class="row-price">' + brl(it.preco) + "</span>";
+    return '<li class="' + cls + '" data-row="' + it.key + '" data-search="' + esc(norm(it.nome + " " + (it.desc || "") + " " + it.cat.nome)) + '">' +
+      '<div class="row-main">' + (showCat ? '<span class="res-cat">' + esc(it.cat.nome) + "</span>" : "") +
+      '<h3 class="row-name">' + esc(it.nome) + "</h3>" +
+      (it.variacoes ? '<p class="row-note">' + esc(it.desc) + "</p>" : it.desc ? '<p class="row-desc">' + esc(it.desc) + "</p>" : "") +
+      price + "</div>" +
+      '<div class="row-ctl" data-ctl="' + it.key + '">' + (it.variacoes ? varControl(it) : control(it.key, it.nome)) + "</div></li>";
+  }
+  function renderMenu() {
+    var h = "", t = "";
+    MENU.forEach(function (c) {
+      t += '<a class="tab" href="#/cardapio/' + c.id + '" data-tab="' + c.id + '">' + esc(c.nome) + "</a>";
+      h += '<section class="sec" id="sec-' + c.id + '" data-sec="' + c.id + '"><div class="sec-head"><h2>' + esc(c.nome) + "</h2><span>" + plural(c.total, "item", "itens") + "</span></div>";
+      c.grupos.forEach(function (g) {
+        h += '<div class="grp"' + (g.id ? ' id="grp-' + g.id + '"' : "") + ">" + (g.titulo ? '<h3 class="grp-title">' + esc(g.titulo) + "</h3>" : "") + '<ul class="rows">';
+        g.itens.forEach(function (it) { h += rowHTML(it); });
+        h += "</ul></div>";
       });
-      html += "</ul>";
+      h += "</section>";
     });
-    $("#catBody").innerHTML = html;
+    $("#tabs").innerHTML = t;
+    $("#menuBody").innerHTML = h;
+  }
 
-    var idx = MENU.indexOf(cat);
-    var nx = "";
-    if (idx > 0) nx += '<a class="light" href="#/' + MENU[idx - 1].id + '">← ' + esc(MENU[idx - 1].nome) + "</a>";
-    if (idx < MENU.length - 1) nx += '<a href="#/' + MENU[idx + 1].id + '">' + esc(MENU[idx + 1].nome) + " →</a>";
-    $("#catNext").innerHTML = nx;
+  /* ---------- Scrollspy das abas ---------- */
+  var spyLock = 0, activeTab = null, observer = null;
+  function setActive(id) {
+    if (id === activeTab) return;
+    activeTab = id;
+    $$(".tab").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-tab") === id ? "true" : "false"); });
+    $$("#drawerList a[data-cat]").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-cat") === id ? "true" : "false"); });
+    var tab = $('.tab[data-tab="' + id + '"]'), bar = $("#tabs");
+    if (tab && bar) bar.scrollTo({ left: tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2, behavior: "smooth" });
+  }
+  function headH() { var a = $("#appbar"); return a.hidden ? 0 : a.offsetHeight; }
+  function startSpy() {
+    if (observer) observer.disconnect();
+    if (!("IntersectionObserver" in window)) return;
+    observer = new IntersectionObserver(function (entries) {
+      if (Date.now() < spyLock) return;
+      entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.getAttribute("data-sec")); });
+    }, { rootMargin: "-" + (headH() + 8) + "px 0px -65% 0px", threshold: 0 });
+    $$(".sec").forEach(function (s) { observer.observe(s); });
+  }
+  function jump(target, smooth) {
+    var el = document.getElementById("sec-" + target) || document.getElementById("grp-" + target);
+    if (!el) { window.scrollTo(0, 0); return; }
+    var sec = el.closest(".sec");
+    spyLock = Date.now() + (smooth ? 900 : 300);
+    setActive(sec.getAttribute("data-sec"));
+    var y = el.getBoundingClientRect().top + window.pageYOffset - headH() - (el.classList.contains("sec") ? 8 : 4);
+    window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
+  }
 
-    document.querySelectorAll("#drawerList a[data-cat]").forEach(function (a) {
-      if (a.getAttribute("data-cat") === cat.id) a.setAttribute("aria-current", "page");
-      else a.removeAttribute("aria-current");
+  /* ---------- Busca ---------- */
+  function openSearch(val) {
+    $("#searchRow").hidden = false; $("#appbar").classList.add("searching");
+    $("#btnSearch").setAttribute("aria-expanded", "true");
+    var q = $("#q"); if (typeof val === "string") q.value = val;
+    q.focus(); applySearch();
+  }
+  function closeSearch() {
+    $("#q").value = ""; applySearch();
+    $("#searchRow").hidden = true; $("#appbar").classList.remove("searching");
+    $("#btnSearch").setAttribute("aria-expanded", "false");
+    startSpy();
+  }
+  function applySearch() {
+    var q = norm($("#q").value.trim());
+    $("#qClear").hidden = !q;
+    var any = false;
+    $$(".sec").forEach(function (sec) {
+      var secAny = false;
+      $$(".grp", sec).forEach(function (g) {
+        var gAny = false;
+        $$(".row", g).forEach(function (r) {
+          var ok = !q || r.getAttribute("data-search").indexOf(q) >= 0;
+          r.hidden = !ok; if (ok) gAny = true;
+        });
+        g.hidden = !gAny; if (gAny) secAny = true;
+      });
+      sec.hidden = !secAny; if (secAny) any = true;
     });
+    $("#noResults").hidden = any;
+    if (q) window.scrollTo(0, 0);
   }
 
   /* ---------- Rotas ---------- */
-  var currentCat = null;
+  var view = null;
   function route() {
     var parts = (location.hash || "#/").replace(/^#\/?/, "").split("/");
-    var cat = MENU.filter(function (c) { return c.id === parts[0]; })[0];
-    closeMenu();
-    if (!cat) {
-      currentCat = null;
-      $("#viewHome").hidden = false; $("#viewCat").hidden = true; $("#topbar").hidden = true;
-      document.title = "Esquina do Espeto — Churrasco & Cerveja | Cardápio";
+    closeDrawer();
+    if (parts[0] !== "cardapio") {
+      view = "home";
+      $("#home").hidden = false; $("#menu").hidden = true; $("#appbar").hidden = true;
+      document.body.classList.remove("in-menu");
+      document.title = "Esquina do Espeto — Churrasco & Cerveja";
       window.scrollTo(0, 0);
     } else {
-      var changed = currentCat !== cat;
-      currentCat = cat;
-      $("#viewHome").hidden = true; $("#viewCat").hidden = false; $("#topbar").hidden = false;
-      if (changed) renderCat(cat);
-      document.title = cat.nome + " | Esquina do Espeto";
-      var target = parts[1] ? document.getElementById("sub-" + parts[1]) : null;
-      if (target) requestAnimationFrame(function () { target.scrollIntoView({ block: "start" }); });
-      else window.scrollTo(0, 0);
+      var first = view !== "menu";
+      view = "menu";
+      $("#home").hidden = true; $("#menu").hidden = false; $("#appbar").hidden = false;
+      document.body.classList.add("in-menu");
+      document.title = "Cardápio · Esquina do Espeto";
+      if ($("#q").value) closeSearch();
+      if (first) startSpy();
+      var target = parts[1] || MENU[0].id;
+      requestAnimationFrame(function () { jump(target, !first); });
     }
-    refresh();
   }
 
-  /* ---------- Menu ≡ ---------- */
-  var lastFocus = null;
-  function openMenu() {
-    lastFocus = document.activeElement;
-    $("#drawer").classList.add("open");
-    $("#drawer").setAttribute("aria-hidden", "false");
-    $("#scrim").hidden = false;
-    $("#btnMenu").setAttribute("aria-expanded", "true");
-    setTimeout(function () { $("#btnCloseMenu").focus(); }, 50);
+  /* ---------- Drawer ---------- */
+  var scrimFor = null;
+  function showScrim(kind) { var s = $("#scrim"); s.hidden = false; s.className = "scrim" + (kind === "opts" ? " top" : ""); scrimFor = kind; }
+  function hideScrim() { $("#scrim").hidden = true; scrimFor = null; }
+  function openDrawer() {
+    $("#drawer").classList.add("open"); $("#drawer").setAttribute("aria-hidden", "false");
+    $("#btnMenu").setAttribute("aria-expanded", "true"); showScrim("drawer");
+    setTimeout(function () { $("#btnDrawerClose").focus(); }, 60);
   }
-  function closeMenu() {
+  function closeDrawer() {
     if (!$("#drawer").classList.contains("open")) return;
-    $("#drawer").classList.remove("open");
-    $("#drawer").setAttribute("aria-hidden", "true");
-    $("#scrim").hidden = true;
-    $("#btnMenu").setAttribute("aria-expanded", "false");
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden", "true");
+    $("#btnMenu").setAttribute("aria-expanded", "false"); hideScrim();
   }
 
-  /* ---------- Revisão ---------- */
-  function buildMessage() {
-    var t = totals();
-    var lines = ["*Pedido — Esquina do Espeto* 🍢", ""];
-    if (cart.nome && cart.nome.trim()) lines.push("*Cliente:* " + cart.nome.trim(), "");
-    var byCat = {};
-    var cats = [];
-    cart.ordem.forEach(function (k) {
-      var p = PRODUCTS[k];
-      if (!byCat[p.cat]) { byCat[p.cat] = []; cats.push(p.cat); }
-      byCat[p.cat].push(k);
-    });
+  /* ---------- Sacola (painel) ---------- */
+  function openBag() {
+    if (DESKTOP.matches) return;
+    $("#bag").classList.add("open"); $("#bag").setAttribute("aria-hidden", "false");
+    showScrim("bag"); document.body.classList.add("lock");
+    setTimeout(function () { $("#btnBagClose").focus(); }, 60);
+  }
+  function closeBag() {
+    if (!$("#bag").classList.contains("open")) return;
+    $("#bag").classList.remove("open"); syncBagAria(); hideScrim(); document.body.classList.remove("lock");
+  }
+  function syncBagAria() { $("#bag").setAttribute("aria-hidden", DESKTOP.matches || $("#bag").classList.contains("open") ? "false" : "true"); }
+
+  function message() {
+    var t = totals(), L = ["*Novo pedido — Esquina do Espeto*", ""];
+    if (bag.nome && bag.nome.trim()) L.push("*Cliente:* " + bag.nome.trim(), "");
     MENU.forEach(function (c) {
-      if (!byCat[c.nome]) return;
-      lines.push("*" + c.nome + "*");
-      byCat[c.nome].forEach(function (k) {
-        var p = PRODUCTS[k], n = cart.itens[k];
-        lines.push("• " + n + "x " + p.nome + " — " + brl(n * p.preco) + (n > 1 ? " (" + brl(p.preco) + " cada)" : ""));
+      var ks = bag.ordem.filter(function (k) { return PRODUCTS[k].cat === c.nome; });
+      if (!ks.length) return;
+      L.push("*" + c.nome + "*");
+      ks.forEach(function (k) {
+        var p = PRODUCTS[k], n = bag.itens[k];
+        L.push(n + "x " + p.nome + " — " + brl(n * p.preco));
       });
-      lines.push("");
+      L.push("");
     });
-    lines.push("*Itens:* " + t.q);
-    lines.push("*Total: " + brl(t.t) + "*");
-    if (cart.obs && cart.obs.trim()) lines.push("", "*Observações:* " + cart.obs.trim());
-    return lines.join("\n");
+    L.push("*Total (" + plural(t.q, "item", "itens") + "): " + brl(t.t) + "*");
+    if (bag.obs && bag.obs.trim()) L.push("", "*Observações:* " + bag.obs.trim());
+    return L.join("\n");
   }
-  function waUrl() { return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(buildMessage()); }
+  function waUrl() { return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(message()); }
 
-  function renderReview() {
-    var t = totals();
-    var html = "";
-    cart.ordem.forEach(function (k) {
-      var p = PRODUCTS[k], n = cart.itens[k];
-      html += '<li><div class="r-name">' + esc(p.nome) + "<small>" + brl(p.preco) + " cada · " + esc(p.cat) + "</small></div>" +
-        '<div class="r-sub">' + brl(n * p.preco) + "</div>" +
-        '<div class="r-row">' + control(k, p.nome) + "</div></li>";
+  function renderBag() {
+    var t = totals(), h = "";
+    bag.ordem.forEach(function (k) {
+      var p = PRODUCTS[k], n = bag.itens[k];
+      h += '<li class="bag-item"><div class="bi-name">' + esc(p.nome) + '<span class="bi-unit">' + brl(p.preco) + " cada</span></div>" +
+        '<div class="bi-sub">' + brl(n * p.preco) + "</div>" + stepper(k, p.nome) + "</li>";
     });
-    $("#reviewList").innerHTML = html;
-    $("#reviewEmpty").hidden = t.q > 0;
-    $("#fields").hidden = t.q === 0;
-    $("#sheetTotal").textContent = brl(t.t);
-    var send = $("#btnSend");
-    if (t.q) { send.href = waUrl(); send.removeAttribute("aria-disabled"); }
-    else { send.href = "#"; send.setAttribute("aria-disabled", "true"); }
+    $("#bagList").innerHTML = h;
+    $("#bagEmpty").hidden = t.q > 0;
+    $("#bagForm").hidden = t.q === 0;
+    $("#bagFoot").hidden = t.q === 0;
     $("#btnClear").hidden = t.q === 0;
-  }
-  function openSheet() {
-    $("#nome").value = cart.nome || "";
-    $("#obs").value = cart.obs || "";
-    renderReview();
-    $("#sheet").hidden = false;
-    document.body.classList.add("lock");
-    setTimeout(function () { $("#btnCloseSheet").focus(); }, 50);
-  }
-  function closeSheet() {
-    $("#sheet").hidden = true;
-    document.body.classList.remove("lock");
+    $("#bagCount").textContent = plural(t.q, "item", "itens");
+    $("#bagTotal").textContent = brl(t.t);
+    $("#btnSend").href = t.q ? waUrl() : "#";
   }
 
-  /* ---------- Atualização geral ---------- */
-  var lastQ = null;
-  function refresh() {
+  /* ---------- Opções (variações) ---------- */
+  var optsItem = null;
+  function renderOpts() {
+    var it = optsItem; if (!it) return;
+    $("#optsList").innerHTML = it.variacoes.map(function (v) {
+      return '<li class="opt"><div><strong>' + esc(v.nome) + '</strong><span>' + brl(v.preco) + '</span></div><div data-ctl-opt="' + v.key + '">' + control(v.key, it.nome + " " + v.nome) + "</div></li>";
+    }).join("");
+  }
+  function openOpts(key) {
+    optsItem = ITEMS[key];
+    $("#optsTitle").textContent = optsItem.nome;
+    $("#optsNote").textContent = optsItem.desc || "";
+    renderOpts();
+    $("#opts").hidden = false; showScrim("opts"); document.body.classList.add("lock");
+    setTimeout(function () { var b = $("#optsList button"); if (b) b.focus(); }, 60);
+  }
+  function closeOpts() {
+    if ($("#opts").hidden) return;
+    $("#opts").hidden = true; hideScrim();
+    if (!$("#bag").classList.contains("open")) document.body.classList.remove("lock");
+    else showScrim("bag");
+    var it = optsItem; optsItem = null;
+    var b = it && $('[data-ctl="' + it.key + '"] .add'); if (b) b.focus();
+  }
+
+  /* ---------- Atualização ---------- */
+  function refresh(added) {
     var t = totals();
-    document.querySelectorAll("[data-ctl]").forEach(function (el) {
-      var k = el.getAttribute("data-ctl");
-      el.innerHTML = control(k, PRODUCTS[k].nome);
+    $$("[data-ctl]").forEach(function (el) {
+      var it = ITEMS[el.getAttribute("data-ctl")];
+      el.innerHTML = it.variacoes ? varControl(it) : control(it.key, it.nome);
+      var inBag = it.variacoes ? it.variacoes.some(function (v) { return qty(v.key); }) : qty(it.key);
+      el.parentNode.classList.toggle("in", !!inBag);
     });
-    document.querySelectorAll("[data-item]").forEach(function (li) {
-      var on = Array.prototype.some.call(li.querySelectorAll("[data-ctl]"), function (c) { return qty(c.getAttribute("data-ctl")); });
-      li.classList.toggle("in", on);
-    });
-    var bar = $("#cartbar");
-    bar.hidden = t.q === 0;
-    $("#cbQty").textContent = t.q;
-    $("#cbTotal").textContent = brl(t.t);
-    $("#btnCartBar").setAttribute("aria-label", "Ver pedido: " + t.q + " itens, total " + brl(t.t));
-    var b = $("#badgeTop");
-    b.hidden = t.q === 0; b.textContent = t.q;
-    if (lastQ !== null && t.q > lastQ) { bar.classList.remove("pulse"); void bar.offsetWidth; bar.classList.add("pulse"); }
-    lastQ = t.q;
-    if (!$("#sheet").hidden) renderReview();
-  }
-
-  var toastTimer;
-  function toast(msg) {
-    var el = $("#toast");
-    el.textContent = msg; el.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { el.classList.remove("show"); }, 1600);
+    renderOpts(); renderBag();
+    var bb = $("#bagbar");
+    bb.hidden = t.q === 0;
+    $("#bbQty").textContent = t.q; $("#bbTotal").textContent = brl(t.t);
+    bb.setAttribute("aria-label", "Ver sacola, " + plural(t.q, "item", "itens") + ", " + brl(t.t));
+    var dot = $("#bagDot"); dot.hidden = t.q === 0; dot.textContent = t.q;
+    if (added && !bb.hidden) { bb.classList.remove("bump"); void bb.offsetWidth; bb.classList.add("bump"); }
   }
 
   /* ---------- Eventos ---------- */
   document.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-act]");
-    if (!btn) return;
-    var k = btn.getAttribute("data-key");
-    var act = btn.getAttribute("data-act");
-    var inSheet = !!btn.closest(".sheet");
-    if (act === "add") { setQty(k, 1); toast("Adicionado: " + PRODUCTS[k].nome); }
-    else if (act === "inc") setQty(k, qty(k) + 1);
-    else if (act === "dec") setQty(k, qty(k) - 1);
-    // mantém o foco no controle recriado
-    var sel = '[data-ctl="' + k + '"]';
-    var holder = inSheet ? document.querySelector(".sheet " + sel) || document.querySelector(".sheet [data-key=\"" + k + "\"]") : document.querySelector("#catBody " + sel);
-    if (holder) {
-      var f = holder.querySelector('[data-act="' + (act === "add" ? "inc" : act) + '"]') || holder.querySelector("[data-act]");
-      if (f) f.focus();
-    }
+    var b = e.target.closest("[data-act]");
+    if (!b) return;
+    var act = b.getAttribute("data-act"), k = b.getAttribute("data-key");
+    if (act === "opts") { openOpts(b.getAttribute("data-item")); return; }
+    var holder = b.closest("[data-ctl],[data-ctl-opt],.bag-item");
+    var path = holder && (holder.getAttribute("data-ctl") ? '[data-ctl="' + holder.getAttribute("data-ctl") + '"]' : holder.getAttribute("data-ctl-opt") ? '[data-ctl-opt="' + k + '"]' : null);
+    if (act === "inc") setQty(k, qty(k) + 1);
+    if (act === "dec") setQty(k, qty(k) - 1);
+    if (path) { var f = $(path + ' [data-act="' + act + '"]') || $(path + " [data-act]"); if (f) f.focus(); }
   });
-  $("#btnMenu").addEventListener("click", openMenu);
-  $("#btnCloseMenu").addEventListener("click", closeMenu);
-  $("#scrim").addEventListener("click", closeMenu);
-  $("#drawer").addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
-  $("#btnCartTop").addEventListener("click", openSheet);
-  $("#btnCartBar").addEventListener("click", openSheet);
-  $("#btnCloseSheet").addEventListener("click", closeSheet);
-  $("#sheet").addEventListener("click", function (e) { if (e.target === this) closeSheet(); });
-  $("#nome").addEventListener("input", function () { cart.nome = this.value; save(); $("#btnSend").href = waUrl(); });
-  $("#obs").addEventListener("input", function () { cart.obs = this.value; save(); $("#btnSend").href = waUrl(); });
-  $("#btnSend").addEventListener("click", function () {
-    if (!totals().q) return;
-    this.href = waUrl();
+  $("#btnMenu").addEventListener("click", openDrawer);
+  $("#btnDrawerClose").addEventListener("click", closeDrawer);
+  $("#drawer").addEventListener("click", function (e) {
+    var a = e.target.closest("a"); if (!a) return;
+    if (a.getAttribute("href") === location.hash) { e.preventDefault(); closeDrawer(); jump(a.getAttribute("href").split("/")[2], true); }
   });
+  $("#tabs").addEventListener("click", function (e) {
+    var a = e.target.closest(".tab"); if (!a) return;
+    e.preventDefault();
+    history.replaceState(null, "", a.getAttribute("href"));
+    jump(a.getAttribute("data-tab"), true);
+  });
+  $("#btnSearch").addEventListener("click", function () { if ($("#searchRow").hidden) openSearch(); else closeSearch(); });
+  $("#homeSearch").addEventListener("click", function () { location.hash = "#/cardapio"; setTimeout(function () { openSearch(""); }, 30); });
+  $("#q").addEventListener("input", applySearch);
+  $("#q").addEventListener("keydown", function (e) { if (e.key === "Enter") this.blur(); });
+  $("#qClear").addEventListener("click", function () { $("#q").value = ""; applySearch(); $("#q").focus(); });
+  $("#btnBagTop").addEventListener("click", openBag);
+  $("#bagbar").addEventListener("click", openBag);
+  $("#btnBagClose").addEventListener("click", closeBag);
+  $("#btnOptsClose").addEventListener("click", closeOpts);
+  $("#btnOptsDone").addEventListener("click", closeOpts);
+  $("#scrim").addEventListener("click", function () { if (scrimFor === "opts") closeOpts(); else if (scrimFor === "bag") closeBag(); else closeDrawer(); });
+  $("#obs").addEventListener("input", function () { bag.obs = this.value; save(); $("#btnSend").href = waUrl(); });
+  $("#nome").addEventListener("input", function () { bag.nome = this.value; save(); $("#btnSend").href = waUrl(); });
+  $("#btnSend").addEventListener("click", function () { if (totals().q) this.href = waUrl(); });
   $("#btnClear").addEventListener("click", function () {
-    if (!window.confirm("Limpar todos os itens do pedido?")) return;
-    cart = { itens: {}, ordem: [], nome: cart.nome, obs: "" };
-    save(); $("#obs").value = ""; refresh(); renderReview();
+    if (!window.confirm("Esvaziar a sacola?")) return;
+    bag.itens = {}; bag.ordem = []; bag.obs = ""; $("#obs").value = ""; save(); refresh();
   });
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
-    if (!$("#sheet").hidden) closeSheet(); else closeMenu();
+    if (!$("#opts").hidden) closeOpts(); else if ($("#bag").classList.contains("open")) closeBag(); else if ($("#drawer").classList.contains("open")) closeDrawer(); else if (!$("#searchRow").hidden) closeSearch();
   });
+  (DESKTOP.addEventListener ? DESKTOP.addEventListener.bind(DESKTOP, "change") : DESKTOP.addListener.bind(DESKTOP))(function () { closeBag(); syncBagAria(); });
   window.addEventListener("hashchange", route);
 
-  renderHome();
-  route();
+  /* ---------- Início ---------- */
+  paintIcons(document);
+  renderHome(); renderMenu();
+  $("#obs").value = bag.obs || ""; $("#nome").value = bag.nome || "";
+  syncBagAria(); refresh(); route();
 })();
