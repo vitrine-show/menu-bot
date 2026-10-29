@@ -22,8 +22,10 @@ window.MENU = [
       ["Jantinha com 1 Espeto", 30, "Arroz branco com alho frito, purê de batata, farofa da casa e um espetinho de sua preferência. Opções de espeto no cardápio. Observação: exceto boi, picanha e camarão."],
       ["Jantinha com 2 Espetos", 35, "Arroz branco com alho frito, purê de batata, farofa da casa e dois espetinhos de sua preferência. Opções de espeto no cardápio. Observação: exceto boi, picanha e camarão."],
       ["Jantinha com 2 Espetos de Boi", 38, "Arroz branco com alho frito, purê de batata, farofa da casa e dois espetinhos de sua preferência. Opções de espeto no cardápio. Observação: exceto picanha e camarão."]
-    ]},
-    { id: "strogonoff", titulo: "Strogonoff", itens: [
+    ]}
+  ]},
+  { id: "strogonoff", nome: "Strogonoff", icone: "panela", grupos: [
+    { itens: [
       ["Strogonoff de Carne Completo 500gr", 29.9, "Suculenta iscas de carne envolvidas por molho de strogonoff cremoso, arroz branco com alho frito e batata palha. Obs: Não possui champignon"],
       ["Strogonoff de Frango Completo 500gr", 29.9, "Suculentas iscas de frango envolvidos por um molho de strogonoff cremoso, arroz branco com alho frito, e batata palha. Obs: Não possui champignon"]
     ]}

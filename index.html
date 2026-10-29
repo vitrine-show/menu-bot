@@ -34,15 +34,7 @@
         <img src="logo-web.svg" alt="" width="32" height="32">
         <span>Esquina do Espeto</span>
       </a>
-      <button class="ibtn" id="btnSearch" type="button" aria-label="Buscar no cardápio" aria-expanded="false" data-icon="search"></button>
       <button class="ibtn bag-ibtn" id="btnBagTop" type="button" aria-label="Ver pedido" data-icon="bag"><span class="dot" id="bagDot" hidden></span></button>
-    </div>
-    <div class="searchrow" id="searchRow" hidden>
-      <label class="search">
-        <span class="search-ico" data-icon="search" aria-hidden="true"></span>
-        <input id="q" type="search" placeholder="Buscar no cardápio" autocomplete="off" enterkeyhint="search" aria-label="Buscar no cardápio">
-        <button class="search-clear" id="qClear" type="button" aria-label="Limpar busca" data-icon="x" hidden></button>
-      </label>
     </div>
   </header>
 
@@ -56,20 +48,14 @@
             <h1 id="homeTitle">Esquina do Espeto</h1>
             <p class="hero-sub">Churrasco &amp; Cerveja</p>
           </div>
-          <button class="ibtn hero-search" id="homeSearch" type="button" aria-label="Buscar no cardápio" data-icon="search"></button>
         </div>
-        <p class="howto"><span data-icon="plus" class="howto-ico" aria-hidden="true"></span>Toque em + para adicionar e finalize o pedido.</p>
-        <h2 class="label">Categorias</h2>
-        <ul class="catlist" id="catList"></ul>
+        <p class="howto">AQUI A VIDA TEM MAIS SABOR</p>
+        <ul class="catlist" id="catList" aria-label="Categorias"></ul>
       </section>
 
       <!-- CARDÁPIO -->
       <section class="menu" id="menu" hidden aria-label="Cardápio">
         <div id="menuBody"></div>
-        <div class="empty-search" id="noResults" hidden>
-          <span data-icon="search" aria-hidden="true"></span>
-          <p><strong>Nada encontrado</strong><br>Tente outro nome, como “picanha” ou “latão”.</p>
-        </div>
       </section>
     </main>
 

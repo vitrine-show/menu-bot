@@ -9,7 +9,6 @@
   /* ---------- Ícones (SVG de linha, desenhados aqui) ---------- */
   var P = {
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
-    search: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>',
     bag: '<path d="M4.5 2.5h15v19l-2.5-1.6-2.5 1.6-2.5-1.6-2.5 1.6-2.5-1.6-2.5 1.6Z"/><path d="M8 7.5h8M8 11.5h8M8 15.5h5"/>',
     x: '<path d="M6 6l12 12M18 6 6 18"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
@@ -70,7 +69,6 @@
 
   var brl = function (n) { return "R$ " + n.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, "."); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
-  var norm = function (s) { return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); };
   var plural = function (n, a, b) { return n + " " + (n === 1 ? a : b); };
 
   /* ---------- Sacola ---------- */
@@ -109,15 +107,11 @@
     var h = "", d = "";
     MENU.forEach(function (c) {
       h += '<li><a class="cat-link" href="#/cardapio/' + c.id + '"><span class="cat-ico">' + icon(catIcon(c)) + '</span>' +
-        '<span class="cat-txt"><strong>' + esc(c.nome) + "</strong><span>" + plural(c.total, "item", "itens") + " · a partir de " + brl(c.min) + "</span></span>" + icon("chev", "chev") + "</a></li>";
+        '<span class="cat-txt"><strong>' + esc(c.nome) + "</strong></span></a></li>";
       var hasSub = c.grupos.some(function (g) { return g.id; });
-      d += '<li' + (hasSub ? ' class="has-sub"' : "") + '><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + '<span class="n">' + c.total + "</span></a>" +
+      d += '<li' + (hasSub ? ' class="has-sub"' : "") + '><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + "</a>" +
         (hasSub ? '<button type="button" class="exp" data-exp="' + c.id + '" aria-expanded="false" aria-label="Subcategorias de ' + esc(c.nome) + '">' + icon("chev") + "</button>" : "") + "</li>";
       c.grupos.forEach(function (g) {
-        if (g.id === "strogonoff") {
-          h += '<li class="sub"><a class="cat-link" href="#/cardapio/strogonoff"><span class="cat-ico">' + icon("panela") + '</span>' +
-            '<span class="cat-txt"><strong>Strogonoff</strong><span>Carne ou frango · em Jantinha</span></span>' + icon("chev", "chev") + "</a></li>";
-        }
         if (g.id) d += '<li class="sub" data-parent="' + c.id + '" hidden><a href="#/cardapio/' + g.id + '">' + esc(g.titulo) + "</a></li>";
       });
     });
@@ -126,13 +120,13 @@
   }
 
   /* ---------- Cardápio ---------- */
-  function rowHTML(it, showCat) {
+  function rowHTML(it) {
     var cls = "row";
     var inBag = qty(it.key);
     if (inBag) cls += " in";
     var price = '<span class="row-price">' + brl(it.preco) + "</span>";
-    return '<li class="' + cls + '" data-row="' + it.key + '" data-search="' + esc(norm(it.nome + " " + (it.desc || "") + " " + it.cat.nome)) + '">' +
-      '<div class="row-main">' + (showCat ? '<span class="res-cat">' + esc(it.cat.nome) + "</span>" : "") +
+    return '<li class="' + cls + '" data-row="' + it.key + '">' +
+      '<div class="row-main">' +
       '<h3 class="row-name">' + esc(it.nome) + "</h3>" +
       (it.nota ? '<p class="row-note">' + esc(it.nota) + "</p>" : it.desc ? '<p class="row-desc">' + esc(it.desc) + "</p>" : "") +
       price + "</div>" +
@@ -142,7 +136,7 @@
     var h = "", t = "";
     MENU.forEach(function (c) {
       t += '<a class="tab" href="#/cardapio/' + c.id + '" data-tab="' + c.id + '">' + esc(c.nome) + "</a>";
-      h += '<section class="sec" id="sec-' + c.id + '" data-sec="' + c.id + '"><div class="sec-head"><h2>' + esc(c.nome) + "</h2><span>" + plural(c.total, "item", "itens") + "</span></div>";
+      h += '<section class="sec" id="sec-' + c.id + '" data-sec="' + c.id + '"><div class="sec-head"><h2>' + esc(c.nome) + "</h2></div>";
       c.grupos.forEach(function (g) {
         h += '<div class="grp"' + (g.id ? ' id="grp-' + g.id + '"' : "") + ">" + (g.titulo ? '<h3 class="grp-title">' + esc(g.titulo) + "</h3>" : "") + '<ul class="rows">';
         g.itens.forEach(function (it) { h += rowHTML(it); });
@@ -181,39 +175,6 @@
     window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
   }
 
-  /* ---------- Busca ---------- */
-  function openSearch(val) {
-    $("#searchRow").hidden = false; $("#appbar").classList.add("searching");
-    $("#btnSearch").setAttribute("aria-expanded", "true");
-    var q = $("#q"); if (typeof val === "string") q.value = val;
-    q.focus(); applySearch();
-  }
-  function closeSearch() {
-    $("#q").value = ""; applySearch();
-    $("#searchRow").hidden = true; $("#appbar").classList.remove("searching");
-    $("#btnSearch").setAttribute("aria-expanded", "false");
-    startSpy();
-  }
-  function applySearch() {
-    var q = norm($("#q").value.trim());
-    $("#qClear").hidden = !q;
-    var any = false;
-    $$(".sec").forEach(function (sec) {
-      var secAny = false;
-      $$(".grp", sec).forEach(function (g) {
-        var gAny = false;
-        $$(".row", g).forEach(function (r) {
-          var ok = !q || r.getAttribute("data-search").indexOf(q) >= 0;
-          r.hidden = !ok; if (ok) gAny = true;
-        });
-        g.hidden = !gAny; if (gAny) secAny = true;
-      });
-      sec.hidden = q ? !secAny : sec.getAttribute("data-sec") !== currentCat; if (!sec.hidden) any = true;
-    });
-    $("#noResults").hidden = any;
-    if (q) window.scrollTo(0, 0);
-  }
-
   /* ---------- Rotas ---------- */
   var view = null, currentCat = null;
   function route() {
@@ -231,12 +192,12 @@
       $("#home").hidden = true; $("#menu").hidden = false; $("#appbar").hidden = false;
       document.body.classList.add("in-menu");
       document.title = "Cardápio · Esquina do Espeto";
-      if ($("#q").value) closeSearch();
       if (first) startSpy();
       var target = parts[1] || MENU[0].id;
       var tEl = document.getElementById("sec-" + target) || document.getElementById("grp-" + target);
       currentCat = tEl ? tEl.closest(".sec").getAttribute("data-sec") : MENU[0].id;
-      applySearch();
+      $$(".sec").forEach(function (sec) { sec.hidden = sec.getAttribute("data-sec") !== currentCat; });
+      setActive(currentCat);
       requestAnimationFrame(function () { if (document.getElementById("sec-" + target)) window.scrollTo(0, 0); else jump(target, !first); });
     }
   }
@@ -365,11 +326,6 @@
     var a = e.target.closest("a"); if (!a) return;
     if (a.getAttribute("href") === location.hash) { e.preventDefault(); closeDrawer(); jump(a.getAttribute("href").split("/")[2], true); }
   });
-  $("#btnSearch").addEventListener("click", function () { if ($("#searchRow").hidden) openSearch(); else closeSearch(); });
-  $("#homeSearch").addEventListener("click", function () { location.hash = "#/cardapio"; setTimeout(function () { openSearch(""); }, 30); });
-  $("#q").addEventListener("input", applySearch);
-  $("#q").addEventListener("keydown", function (e) { if (e.key === "Enter") this.blur(); });
-  $("#qClear").addEventListener("click", function () { $("#q").value = ""; applySearch(); $("#q").focus(); });
   $("#btnBagTop").addEventListener("click", openBag);
   $("#bagbar").addEventListener("click", openBag);
   $("#btnBagClose").addEventListener("click", closeBag);
@@ -383,7 +339,7 @@
   });
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
-    if ($("#bag").classList.contains("open")) closeBag(); else if ($("#drawer").classList.contains("open")) closeDrawer(); else if (!$("#searchRow").hidden) closeSearch();
+    if ($("#bag").classList.contains("open")) closeBag(); else if ($("#drawer").classList.contains("open")) closeDrawer();
   });
   (DESKTOP.addEventListener ? DESKTOP.addEventListener.bind(DESKTOP, "change") : DESKTOP.addListener.bind(DESKTOP))(function () { closeBag(); syncBagAria(); });
   window.addEventListener("hashchange", route);
