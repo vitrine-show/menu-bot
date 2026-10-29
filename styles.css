@@ -17,7 +17,7 @@
   --sh-1:0 1px 2px rgba(16,24,40,.05), 0 1px 3px rgba(16,24,40,.06);
   --sh-2:0 10px 30px rgba(16,24,40,.18);
   --font:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --appbar:56px; --tabs:46px;
+  --appbar:56px; --tabs:0px;
   --head:calc(var(--appbar) + var(--tabs));
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -64,6 +64,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .home{max-width:640px;margin:0 auto;padding-top:24px}
 .hero{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .hero-logo{width:84px;height:84px;flex:none;border-radius:50%;box-shadow:var(--sh-1)}
+.hero-search{margin-left:auto;align-self:flex-start;background:var(--surface);box-shadow:var(--sh-1);border-radius:50%;width:44px;height:44px}
 .hero h1{margin:0;font-size:24px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
 .hero-sub{margin:4px 0 0;color:var(--ink-2);font-weight:500}
 .search{display:flex;align-items:center;gap:10px;width:100%;height:46px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--muted);text-align:left}
@@ -92,7 +93,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .home-foot{margin:28px 0 0;text-align:center;color:var(--muted);font-size:12.5px}
 
 /* ---------- Barra superior ---------- */
-.appbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);box-shadow:0 1px 0 var(--line)}
+.appbar{position:sticky;top:0;z-index:30;background:#FFFFFF;box-shadow:0 1px 0 var(--line)}
 .appbar-row{max-width:1200px;margin:0 auto;height:var(--appbar);display:flex;align-items:center;gap:4px;padding:0 8px}
 .brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:0 6px;text-decoration:none}
 .brand img{width:32px;height:32px;flex:none}
@@ -109,7 +110,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 
 /* ---------- Cardápio ---------- */
 .menu{max-width:720px;margin:0 auto;padding-top:8px}
-.sec{padding-top:20px;scroll-margin-top:calc(var(--head) + 4px)}
+.sec{padding-top:20px;scroll-margin-top:var(--head)}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 2px 12px}
 .sec-head h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em}
 .sec-head span{color:var(--muted);font-size:13px;white-space:nowrap}
@@ -137,8 +138,8 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 /* ---------- Barra "Ver sacola" ---------- */
 .bagbar{position:fixed;z-index:35;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;height:56px;display:flex;align-items:center;gap:12px;padding:0 18px 0 10px;border:0;border-radius:16px;background:var(--ink);color:#fff;box-shadow:var(--sh-2);font-weight:700;font-size:15px;animation:rise .25s ease}
 .bagbar-qty{min-width:32px;height:32px;padding:0 8px;display:grid;place-items:center;border-radius:10px;background:var(--brand);color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
-.bagbar-label{flex:1;text-align:left}
-.bagbar-total{font-variant-numeric:tabular-nums}
+.bagbar-label{flex:1;text-align:left;padding-left:8px}
+.bagbar-total{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
 .bagbar.bump{animation:bump .3s ease}
 @keyframes rise{from{transform:translateY(16px);opacity:0}}
 @keyframes bump{40%{transform:scale(1.025)}}
@@ -211,12 +212,14 @@ body.lock{overflow:hidden}
   .rows{padding:0 12px}
   .row{gap:10px}
   .hero-logo{width:68px;height:68px}
-  .hero h1{font-size:21px}
+  .hero-search{margin-left:auto;align-self:flex-start;background:var(--surface);box-shadow:var(--sh-1);border-radius:50%;width:44px;height:44px}
+.hero h1{font-size:21px}
   .brand span{font-size:15px}
 }
 @media (min-width:640px){
   .hero-logo{width:104px;height:104px}
-  .hero h1{font-size:30px}
+  .hero-search{margin-left:auto;align-self:flex-start;background:var(--surface);box-shadow:var(--sh-1);border-radius:50%;width:44px;height:44px}
+.hero h1{font-size:30px}
   .bag,.sheet{bottom:16px;border-radius:var(--r-lg);left:16px;right:16px}
 }
 @media (min-width:1024px){

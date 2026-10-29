@@ -35,7 +35,7 @@
         <span>Esquina do Espeto</span>
       </a>
       <button class="ibtn" id="btnSearch" type="button" aria-label="Buscar no cardápio" aria-expanded="false" data-icon="search"></button>
-      <button class="ibtn bag-ibtn" id="btnBagTop" type="button" aria-label="Abrir sacola" data-icon="bag"><span class="dot" id="bagDot" hidden></span></button>
+      <button class="ibtn bag-ibtn" id="btnBagTop" type="button" aria-label="Ver pedido" data-icon="bag"><span class="dot" id="bagDot" hidden></span></button>
     </div>
     <div class="searchrow" id="searchRow" hidden>
       <label class="search">
@@ -44,7 +44,6 @@
         <button class="search-clear" id="qClear" type="button" aria-label="Limpar busca" data-icon="x" hidden></button>
       </label>
     </div>
-    <nav class="tabs" id="tabs" aria-label="Categorias do cardápio"></nav>
   </header>
 
   <div class="layout">
@@ -57,12 +56,9 @@
             <h1 id="homeTitle">Esquina do Espeto</h1>
             <p class="hero-sub">Churrasco &amp; Cerveja</p>
           </div>
+          <button class="ibtn hero-search" id="homeSearch" type="button" aria-label="Buscar no cardápio" data-icon="search"></button>
         </div>
-        <button class="search fake" id="homeSearch" type="button">
-          <span class="search-ico" data-icon="search" aria-hidden="true"></span>
-          <span>Buscar no cardápio</span>
-        </button>
-        <p class="howto"><span data-icon="plus" class="howto-ico" aria-hidden="true"></span>Toque em + para adicionar e finalize na sacola.</p>
+        <p class="howto"><span data-icon="plus" class="howto-ico" aria-hidden="true"></span>Toque em + para adicionar e finalize o pedido.</p>
         <h2 class="label">Categorias</h2>
         <ul class="catlist" id="catList"></ul>
       </section>
@@ -77,17 +73,17 @@
       </section>
     </main>
 
-    <!-- SACOLA: coluna à direita no desktop, painel deslizante no celular -->
+    <!-- PEDIDO: coluna à direita no desktop, painel deslizante no celular -->
     <aside class="bag" id="bag" aria-labelledby="bagTitle" aria-hidden="false">
       <div class="bag-head">
-        <h2 id="bagTitle">Sua sacola</h2>
-        <button class="link-btn bag-clear" id="btnClear" type="button" hidden>Esvaziar</button>
-        <button class="ibtn bag-close" id="btnBagClose" type="button" aria-label="Fechar sacola" data-icon="x"></button>
+        <h2 id="bagTitle">Seu pedido</h2>
+        <button class="link-btn bag-clear" id="btnClear" type="button" hidden>Limpar</button>
+        <button class="ibtn bag-close" id="btnBagClose" type="button" aria-label="Fechar pedido" data-icon="x"></button>
       </div>
       <div class="bag-scroll">
         <div class="bag-empty" id="bagEmpty">
           <span data-icon="bag" aria-hidden="true"></span>
-          <p><strong>Sua sacola está vazia</strong><br>Os itens que você adicionar aparecem aqui.</p>
+          <p><strong>Seu pedido está vazio</strong><br>Os itens que você adicionar aparecem aqui.</p>
         </div>
         <ul class="bag-list" id="bagList"></ul>
         <div class="bag-form" id="bagForm" hidden>
@@ -99,7 +95,7 @@
       </div>
       <div class="bag-foot" id="bagFoot" hidden>
         <div class="bag-total"><span id="bagCount">0 itens</span><strong id="bagTotal">R$ 0,00</strong></div>
-        <a class="cta" id="btnSend" href="#" target="_blank" rel="noopener">
+        <a class="cta" id="btnSend" href="#" rel="noopener">
           <span data-icon="whatsapp" aria-hidden="true"></span>Finalizar pedido
         </a>
         <p class="cta-note">Você confirma o envio no WhatsApp do restaurante.</p>
@@ -107,10 +103,10 @@
     </aside>
   </div>
 
-  <!-- Barra flutuante "Ver sacola" (celular/tablet) -->
+  <!-- Barra flutuante "Finalizar pedido" (celular/tablet) -->
   <button class="bagbar" id="bagbar" type="button" hidden>
-    <span class="bagbar-qty" id="bbQty">0</span>
-    <span class="bagbar-label">Ver sacola</span>
+    <span id="bbQty" hidden>0</span>
+    <span class="bagbar-label">Finalizar pedido</span>
     <span class="bagbar-total" id="bbTotal">R$ 0,00</span>
   </button>
 

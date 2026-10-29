@@ -11,7 +11,7 @@
   var P = {
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     search: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>',
-    bag: '<path d="M5.5 8h13l-1 11.2a1.5 1.5 0 0 1-1.5 1.3H8a1.5 1.5 0 0 1-1.5-1.3Z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>',
+    bag: '<path d="M6 3.5h12v17l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3Z"/><path d="M9 8h6M9 11.5h6M9 15h4"/>',
     x: '<path d="M6 6l12 12M18 6 6 18"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
     minus: '<path d="M5 12h14"/>',
@@ -111,7 +111,7 @@
   function varControl(it) {
     var n = it.variacoes.reduce(function (a, v) { return a + qty(v.key); }, 0);
     return '<button type="button" class="add" data-act="opts" data-item="' + it.key + '" aria-label="Escolher tamanho de ' + esc(it.nome) + '">' + icon("plus") + "</button>" +
-      (n ? '<span class="vqty">' + n + " na sacola</span>" : "");
+      (n ? '<span class="vqty">' + n + " no pedido</span>" : "");
   }
 
   /* ---------- Início ---------- */
@@ -161,7 +161,6 @@
       });
       h += "</section>";
     });
-    $("#tabs").innerHTML = t;
     $("#menuBody").innerHTML = h;
   }
 
@@ -172,8 +171,6 @@
     activeTab = id;
     $$(".tab").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-tab") === id ? "true" : "false"); });
     $$("#drawerList a[data-cat]").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-cat") === id ? "true" : "false"); });
-    var tab = $('.tab[data-tab="' + id + '"]'), bar = $("#tabs");
-    if (tab && bar) bar.scrollTo({ left: tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2, behavior: "smooth" });
   }
   function headH() { var a = $("#appbar"); return a.hidden ? 0 : a.offsetHeight; }
   function startSpy() {
@@ -191,7 +188,7 @@
     var sec = el.closest(".sec");
     spyLock = Date.now() + (smooth ? 900 : 300);
     setActive(sec.getAttribute("data-sec"));
-    var y = el.getBoundingClientRect().top + window.pageYOffset - headH() - (el.classList.contains("sec") ? 8 : 4);
+    var y = el.getBoundingClientRect().top + window.pageYOffset - headH() - (el.classList.contains("sec") ? 0 : 12);
     window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
   }
 
@@ -297,7 +294,19 @@
     if (bag.obs && bag.obs.trim()) L.push("", "*Observações:* " + bag.obs.trim());
     return L.join("\n");
   }
-  function waUrl() { return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(message()); }
+  function waUrl() { return "https://api.whatsapp.com/send?phone=" + PHONE + "&text=" + encodeURIComponent(message()); }
+  function sendOrder() {
+    var t = encodeURIComponent(message());
+    if (!/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
+      window.open("https://web.whatsapp.com/send?phone=" + PHONE + "&text=" + t, "_blank", "noopener");
+      return;
+    }
+    var fb = setTimeout(function () { if (!document.hidden) location.href = waUrl(); }, 1500);
+    document.addEventListener("visibilitychange", function h() {
+      if (document.hidden) { clearTimeout(fb); document.removeEventListener("visibilitychange", h); }
+    });
+    location.href = "whatsapp://send?phone=" + PHONE + "&text=" + t;
+  }
 
   function renderBag() {
     var t = totals(), h = "";
@@ -353,8 +362,8 @@
     renderOpts(); renderBag();
     var bb = $("#bagbar");
     bb.hidden = t.q === 0;
-    $("#bbQty").textContent = t.q; $("#bbTotal").textContent = brl(t.t);
-    bb.setAttribute("aria-label", "Ver sacola, " + plural(t.q, "item", "itens") + ", " + brl(t.t));
+    $("#bbQty").textContent = t.q; $("#bbTotal").textContent = plural(t.q, "item", "itens") + " · " + brl(t.t);
+    bb.setAttribute("aria-label", "Finalizar pedido, " + plural(t.q, "item", "itens") + ", " + brl(t.t));
     var dot = $("#bagDot"); dot.hidden = t.q === 0; dot.textContent = t.q;
     if (added && !bb.hidden) { bb.classList.remove("bump"); void bb.offsetWidth; bb.classList.add("bump"); }
   }
@@ -377,12 +386,6 @@
     var a = e.target.closest("a"); if (!a) return;
     if (a.getAttribute("href") === location.hash) { e.preventDefault(); closeDrawer(); jump(a.getAttribute("href").split("/")[2], true); }
   });
-  $("#tabs").addEventListener("click", function (e) {
-    var a = e.target.closest(".tab"); if (!a) return;
-    e.preventDefault();
-    history.replaceState(null, "", a.getAttribute("href"));
-    jump(a.getAttribute("data-tab"), true);
-  });
   $("#btnSearch").addEventListener("click", function () { if ($("#searchRow").hidden) openSearch(); else closeSearch(); });
   $("#homeSearch").addEventListener("click", function () { location.hash = "#/cardapio"; setTimeout(function () { openSearch(""); }, 30); });
   $("#q").addEventListener("input", applySearch);
@@ -396,9 +399,9 @@
   $("#scrim").addEventListener("click", function () { if (scrimFor === "opts") closeOpts(); else if (scrimFor === "bag") closeBag(); else closeDrawer(); });
   $("#obs").addEventListener("input", function () { bag.obs = this.value; save(); $("#btnSend").href = waUrl(); });
   $("#nome").addEventListener("input", function () { bag.nome = this.value; save(); $("#btnSend").href = waUrl(); });
-  $("#btnSend").addEventListener("click", function () { if (totals().q) this.href = waUrl(); });
+  $("#btnSend").addEventListener("click", function (e) { e.preventDefault(); if (totals().q) sendOrder(); });
   $("#btnClear").addEventListener("click", function () {
-    if (!window.confirm("Esvaziar a sacola?")) return;
+    if (!window.confirm("Limpar o pedido?")) return;
     bag.itens = {}; bag.ordem = []; bag.obs = ""; $("#obs").value = ""; save(); refresh();
   });
   document.addEventListener("keydown", function (e) {
