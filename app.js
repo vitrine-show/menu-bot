@@ -2,7 +2,6 @@
   "use strict";
   var MENU = window.MENU || [];
   var PHONE = window.WHATSAPP || "5531996202280";
-  var STORE_KEY = "esquina-do-espeto:sacola:v2";
   var DESKTOP = window.matchMedia("(min-width: 1024px)");
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
@@ -47,7 +46,7 @@
     cat.grupos.forEach(function (g, gi) {
       g.itens = [].concat.apply([], g.itens.map(function (raw) {
         if (Array.isArray(raw) || !raw.variacoes) return [raw];
-        return raw.variacoes.map(function (v) { return { nome: raw.nome + " — " + v[0], msgNome: raw.nome + " - " + v[0], preco: v[1], nota: raw.desc }; });
+        return raw.variacoes.map(function (v) { return { nome: raw.nome + " - " + v[0], msgNome: raw.nome + " - " + v[0], preco: v[1], nota: raw.desc }; });
       })).map(function (raw, ii) {
         var it = Array.isArray(raw) ? { nome: raw[0], preco: raw[1], desc: raw[2] || "" } : raw;
         it.key = cat.id + "-" + gi + "-" + ii; it.cat = cat;
@@ -75,23 +74,15 @@
   var plural = function (n, a, b) { return n + " " + (n === 1 ? a : b); };
 
   /* ---------- Sacola ---------- */
+  // As escolhas duram apenas enquanto esta página permanece aberta, sem recarregar.
   var bag = { itens: {}, ordem: [], nome: "", obs: "" };
-  try {
-    var s = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-    if (s && s.itens) {
-      bag = s;
-      bag.ordem = (bag.ordem || []).filter(function (k) { return PRODUCTS[k] && bag.itens[k] > 0; });
-      Object.keys(bag.itens).forEach(function (k) { if (bag.ordem.indexOf(k) < 0) delete bag.itens[k]; });
-    }
-  } catch (e) {}
-  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(bag)); } catch (e) {} }
   function qty(k) { return bag.itens[k] || 0; }
   function setQty(k, n) {
     n = Math.max(0, Math.min(99, n));
     var before = totals().q;
     if (n === 0) { delete bag.itens[k]; bag.ordem = bag.ordem.filter(function (x) { return x !== k; }); }
     else { if (!bag.itens[k]) bag.ordem.push(k); bag.itens[k] = n; }
-    save(); refresh(totals().q > before);
+    refresh(totals().q > before);
   }
   function totals() {
     var q = 0, t = 0;
@@ -232,7 +223,7 @@
       view = "home";
       $("#home").hidden = false; $("#menu").hidden = true; $("#appbar").hidden = true;
       document.body.classList.remove("in-menu");
-      document.title = "Esquina do Espeto — Churrasco & Cerveja";
+      document.title = "Esquina do Espeto - Churrasco & Cerveja";
       window.scrollTo(0, 0);
     } else {
       var first = view !== "menu";
@@ -287,7 +278,7 @@
   function pad(str, len) { str = String(str); while (str.length < len) str += ' '; return str; }
   function message() {
     var total = totals().t;
-    var msg = '*MENU — ESQUINA DO ESPETO*\n';
+    var msg = '*MENU - ESQUINA DO ESPETO*\n';
     msg += '_Pedido feito pelo menu digital_\n\n';
     msg += '`' + pad('Pedido', 17) + 'Valor .' + '`\n';
     MENU.forEach(function (cat) {
@@ -383,12 +374,12 @@
   $("#bagbar").addEventListener("click", openBag);
   $("#btnBagClose").addEventListener("click", closeBag);
   $("#scrim").addEventListener("click", function () { if (scrimFor === "bag") closeBag(); else closeDrawer(); });
-  $("#obs").addEventListener("input", function () { bag.obs = this.value; save(); $("#btnSend").href = waUrl(); });
-  $("#nome").addEventListener("input", function () { bag.nome = this.value; save(); $("#btnSend").href = waUrl(); });
+  $("#obs").addEventListener("input", function () { bag.obs = this.value; $("#btnSend").href = waUrl(); });
+  $("#nome").addEventListener("input", function () { bag.nome = this.value; $("#btnSend").href = waUrl(); });
   $("#btnSend").addEventListener("click", function (e) { e.preventDefault(); if (totals().q) sendOrder(); });
   $("#btnClear").addEventListener("click", function () {
     if (!window.confirm("Limpar o pedido?")) return;
-    bag.itens = {}; bag.ordem = []; bag.obs = ""; $("#obs").value = ""; save(); refresh();
+    bag.itens = {}; bag.ordem = []; bag.obs = ""; $("#obs").value = ""; refresh();
   });
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;

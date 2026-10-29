@@ -1,4 +1,4 @@
-/* Cardápio — Esquina do Espeto. Edite aqui nomes, preços e descrições. */
+/* Cardápio - Esquina do Espeto. Edite aqui nomes, preços e descrições. */
 window.MENU = [
   { id: "espetinhos", nome: "Espetinhos", icone: "espeto", grupos: [{ itens: [
     ["Camarão", 16], ["Picanha", 30], ["Contra Filé", 14], ["Medalhão de Queijo", 12], ["Porco", 12],
