@@ -293,12 +293,12 @@
     MENU.forEach(function (cat) {
       var idsCategoria = bag.ordem.filter(function (k) { return PRODUCTS[k].cat === cat.nome; });
       if (!idsCategoria.length) return;
-      msg += '\n*— ' + cat.nome.toUpperCase() + ' —*\n';
+      msg += '\n> ' + cat.nome + '\n';
       idsCategoria.forEach(function (k) {
         var p = PRODUCTS[k], qty = bag.itens[k];
         var preco = fmtPreco(p.preco * qty);
-        msg += '\n`' + p.msg + '`\n';
-        msg += '`Quant.: ' + qty + 'x   ' + preco + '`\n';
+        msg += '> `' + p.msg + '`\n';
+        msg += '> `Quant.: ' + qty + 'x   ' + preco + '`\n';
       });
     });
     msg += '\n`─────────────────────`\n\n';
