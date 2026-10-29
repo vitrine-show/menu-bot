@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Esquina do Espeto — Churrasco &amp; Cerveja | Cardápio</title>
+  <meta name="description" content="Cardápio digital da Esquina do Espeto: espetinhos na brasa, porções, jantinha, hambúrguer artesanal, cervejas geladas e drinks. Monte seu pedido e envie pelo WhatsApp.">
+  <meta name="theme-color" content="#F6A62B">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vitrine-show.github.io/menu-bot/">
+  <link rel="canonical" href="https://vitrine-show.github.io/menu-bot/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Esquina do Espeto">
+  <meta property="og:title" content="Esquina do Espeto — Churrasco &amp; Cerveja">
+  <meta property="og:description" content="Veja o cardápio e faça seu pedido pelo WhatsApp.">
+  <meta property="og:image" content="https://vitrine-show.github.io/menu-bot/miniatura.png">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://vitrine-show.github.io/menu-bot/miniatura.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Barra do topo (aparece dentro das categorias) -->
+  <header class="topbar" id="topbar" hidden>
+    <button class="icon-btn" id="btnMenu" aria-label="Abrir menu de categorias" aria-controls="drawer" aria-expanded="false">
+      <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+    <a class="topbar-brand" href="#/" aria-label="Voltar ao início">
+      <img src="logo-web.svg" alt="" width="40" height="40">
+      <span id="topTitle">Cardápio</span>
+    </a>
+    <button class="icon-btn cart-btn" id="btnCartTop" aria-label="Ver pedido">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.6" fill="currentColor"/><circle cx="17" cy="20" r="1.6" fill="currentColor"/></svg>
+      <b class="badge" id="badgeTop" hidden>0</b>
+    </button>
+  </header>
+
+  <!-- Menu lateral (≡) -->
+  <div class="scrim" id="scrim" hidden></div>
+  <nav class="drawer" id="drawer" aria-label="Categorias" aria-hidden="true">
+    <div class="drawer-head">
+      <img src="logo-web.svg" alt="Esquina do Espeto" width="64" height="64">
+      <button class="icon-btn" id="btnCloseMenu" aria-label="Fechar menu">✕</button>
+    </div>
+    <a class="drawer-home" href="#/">← Início</a>
+    <ul id="drawerList"></ul>
+  </nav>
+
+  <main id="conteudo">
+    <!-- HOME -->
+    <section class="view home" id="viewHome" aria-label="Início">
+      <div class="hero">
+        <img class="hero-logo" src="logo-web.svg" alt="Logo Esquina do Espeto — Churrasco &amp; Cerveja" width="400" height="400">
+        <h1>Esquina do Espeto</h1>
+        <p class="hero-sub">Churrasco &amp; Cerveja</p>
+        <p class="hero-tip">Escolha uma categoria, monte seu pedido e envie pelo WhatsApp.</p>
+      </div>
+      <h2 class="home-title">Cardápio</h2>
+      <ul class="cat-grid" id="catGrid"></ul>
+      <footer class="foot">
+        <p>Pedidos pelo WhatsApp <a href="https://wa.me/5531996202280" target="_blank" rel="noopener">(31) 99620-2280</a></p>
+        <p class="small">Preços sujeitos a alteração.</p>
+      </footer>
+    </section>
+
+    <!-- CATEGORIA -->
+    <section class="view cat" id="viewCat" hidden aria-live="polite">
+      <div class="cat-head">
+        <span class="cat-emoji" id="catEmoji" aria-hidden="true"></span>
+        <div>
+          <h1 id="catTitle"></h1>
+          <p id="catSub"></p>
+        </div>
+      </div>
+      <nav class="chips" id="chips" aria-label="Subcategorias" hidden></nav>
+      <div id="catBody"></div>
+      <div class="cat-next" id="catNext"></div>
+    </section>
+  </main>
+
+  <!-- Barra do carrinho -->
+  <div class="cartbar" id="cartbar" hidden>
+    <button class="cartbar-btn" id="btnCartBar">
+      <span class="cb-qty" id="cbQty">0</span>
+      <span class="cb-label">Ver pedido</span>
+      <span class="cb-total" id="cbTotal">R$ 0,00</span>
+    </button>
+  </div>
+
+  <!-- Revisão do pedido -->
+  <div class="sheet-wrap" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet">
+      <div class="sheet-head">
+        <h2 id="sheetTitle">Seu pedido</h2>
+        <button class="icon-btn" id="btnCloseSheet" aria-label="Fechar">✕</button>
+      </div>
+      <div class="sheet-body">
+        <ul class="review" id="reviewList"></ul>
+        <p class="empty" id="reviewEmpty" hidden>Seu pedido está vazio. Adicione itens do cardápio.</p>
+        <div class="fields" id="fields">
+          <label for="nome">Seu nome <span>(opcional)</span></label>
+          <input id="nome" type="text" autocomplete="name" placeholder="Ex.: João">
+          <label for="obs">Observações</label>
+          <textarea id="obs" rows="3" placeholder="Ex.: espeto da jantinha de frango, sem vinagrete, mesa 5…"></textarea>
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <div class="sum"><span>Total</span><strong id="sheetTotal">R$ 0,00</strong></div>
+        <a class="btn-wa" id="btnSend" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Enviar pedido no WhatsApp
+        </a>
+        <button class="btn-clear" id="btnClear">Limpar pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
