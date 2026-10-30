@@ -169,24 +169,24 @@
     $$(".tab").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-tab") === id ? "true" : "false"); });
     $$("#drawerList a[data-cat]").forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-cat") === id ? "true" : "false"); });
   }
-  function headH() { var a = $("#appbar"); return a.hidden ? 0 : a.offsetHeight; }
   function startSpy() {
     if (observer) observer.disconnect();
     if (!("IntersectionObserver" in window)) return;
     observer = new IntersectionObserver(function (entries) {
       if (Date.now() < spyLock) return;
       entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.getAttribute("data-sec")); });
-    }, { rootMargin: "-" + (headH() + 8) + "px 0px -65% 0px", threshold: 0 });
+    }, { root: $(".layout"), rootMargin: "-8px 0px -65% 0px", threshold: 0 });
     $$(".sec").forEach(function (s) { observer.observe(s); });
   }
   function jump(target, smooth) {
     var el = document.getElementById("sec-" + target) || document.getElementById("grp-" + target);
-    if (!el) { window.scrollTo(0, 0); return; }
+    if (!el) { $(".layout").scrollTo(0, 0); return; }
     var sec = el.closest(".sec");
     spyLock = Date.now() + (smooth ? 900 : 300);
     setActive(sec.getAttribute("data-sec"));
-    var y = el.getBoundingClientRect().top + window.pageYOffset - headH() - (el.classList.contains("sec") ? 0 : 12);
-    window.scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
+    var scroller = $(".layout");
+    var y = el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - (el.classList.contains("sec") ? 0 : 12);
+    $(".layout").scrollTo({ top: Math.max(0, y), behavior: smooth ? "smooth" : "auto" });
   }
 
   /* ---------- Rotas ---------- */
@@ -200,7 +200,7 @@
       setActive(null);
       document.body.classList.remove("in-menu");
       document.title = "Esquina do Espeto - Churrasco & Cerveja";
-      window.scrollTo(0, 0);
+      $(".layout").scrollTo(0, 0);
     } else {
       var first = view !== "menu";
       view = "menu";
@@ -213,7 +213,7 @@
       currentCat = tEl ? tEl.closest(".sec").getAttribute("data-sec") : MENU[0].id;
       $$(".sec").forEach(function (sec) { sec.hidden = sec.getAttribute("data-sec") !== currentCat; });
       setActive(currentCat);
-      requestAnimationFrame(function () { if (document.getElementById("sec-" + target)) window.scrollTo(0, 0); else jump(target, !first); });
+      requestAnimationFrame(function () { if (document.getElementById("sec-" + target)) $(".layout").scrollTo(0, 0); else jump(target, !first); });
     }
   }
 

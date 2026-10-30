@@ -17,12 +17,12 @@
   --sh-1:0 1px 2px rgba(16,24,40,.05), 0 1px 3px rgba(16,24,40,.06);
   --sh-2:0 10px 30px rgba(16,24,40,.18);
   --font:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --appbar:61.6px; --tabs:0px;
+  --appbar:66px; --tabs:0px;
   --head:calc(var(--appbar) + var(--tabs));
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--ink);font:400 15px/1.45 var(--font);-webkit-font-smoothing:antialiased}
+body{margin:0;min-height:0;height:100vh;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;background:var(--bg);color:var(--ink);font:400 15px/1.45 var(--font);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 button,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -37,7 +37,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .ibtn:hover{background:var(--line-2)}
 .ibtn svg.i{width:22px;height:22px}
 .appbar .ibtn{width:44px;height:44px}
-.appbar .ibtn svg.i{width:24.2px;height:24.2px}
+.appbar .ibtn svg.i{width:26px;height:26px}
 .dot{position:absolute;top:6px;right:5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--brand);color:var(--ink);font-size:11px;font-weight:700;line-height:17px;text-align:center}
 .cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border:0;border-radius:var(--r);background:var(--ink);color:#fff;font-weight:700;font-size:16px;text-decoration:none;transition:background .15s}
 .cta:hover{background:#2A2E37}
@@ -58,19 +58,19 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .step output{min-width:22px;text-align:center;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
 
 /* ---------- Layout ---------- */
-.layout{max-width:1200px;margin:0 auto;padding:0 16px}
+.layout{width:100%;max-width:1200px;min-height:0;margin:0 auto;padding:0 16px;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
 .main{min-width:0;padding-bottom:112px}
 
 /* ---------- Início ---------- */
 .home{max-width:640px;margin:0 auto;padding-top:24px}
 .hero{display:flex;align-items:center;gap:16px;margin-bottom:0}
 .hero > div{min-width:0;flex:1}
-.hero-message{margin:12px 0 28px;text-align:center}
-.menu-title{margin:0;font-size:18px;font-weight:700;letter-spacing:.08em;line-height:1.3}
-.hero-logo{width:92.4px;height:92.4px;flex:none;border-radius:50%;box-shadow:var(--sh-1)}
-.hero h1{margin:0;font-size:26.4px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
-.hero-sub{margin:4px 0 0;color:var(--ink-2);font-size:16.5px;font-weight:500}
-.howto{margin:4px 0 0;color:var(--ink-2);font-size:14.85px}
+.hero-message{margin:12px 0 24px;text-align:center}
+.menu-title{display:inline-block;margin:0;font-family:"Barlow Condensed",var(--font);font-size:30px;font-weight:700;letter-spacing:.1em;line-height:1.1}
+.hero-logo{width:96px;height:96px;flex:none;border-radius:50%;box-shadow:var(--sh-1)}
+.hero h1{margin:0;font-size:28px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
+.hero-sub{margin:4px 0 0;color:var(--ink-2);font-size:17.5px;font-weight:500}
+.howto{margin:4px 0 0;color:var(--ink-2);font-size:15.5px}
 
 .catlist{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;list-style:none;margin:0;padding:0}
 .cat-link{display:flex;align-items:center;gap:14px;min-height:68px;height:100%;padding:12px 16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);box-shadow:0 3px 0 #DDE0E5,0 5px 8px rgba(16,24,40,.06);text-decoration:none;transition:background .15s,transform .12s,box-shadow .12s}
@@ -79,15 +79,15 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .cat-ico{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:12px;background:var(--brand-tint);color:var(--brand-ink)}
 .cat-ico svg.i{width:22px;height:22px}
 .cat-txt{flex:1;min-width:0}
-.cat-txt strong{display:block;font-size:16px;font-weight:600;line-height:1.3}
+.cat-txt strong{display:block;font-size:17px;font-weight:600;line-height:1.3}
 .home-foot{margin:28px 0 0;text-align:center;color:var(--muted);font-size:12.5px}
 
 /* ---------- Barra superior ---------- */
-.appbar{position:sticky;top:0;z-index:30;background:#FFFFFF;box-shadow:0 1px 0 var(--line)}
-.appbar-row{max-width:1200px;margin:0 auto;height:var(--appbar);display:flex;align-items:center;gap:4px;padding:0 8px}
-.brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:0 6px;text-decoration:none}
+.appbar{position:relative;z-index:30;background:#FFFFFF;box-shadow:0 1px 0 var(--line)}
+.appbar-row{max-width:1200px;margin:0 auto;height:var(--appbar);display:flex;align-items:center;gap:4px;padding:0 16px}
+.brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:0 4px;text-decoration:none}
 .brand img{width:35.2px;height:35.2px;flex:none}
-.brand span{font-weight:700;font-size:17.6px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{font-weight:700;font-size:18.5px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tabs{max-width:1200px;margin:0 auto;height:var(--tabs);display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none;scroll-behavior:smooth}
 .tabs::-webkit-scrollbar{display:none}
 .tab{position:relative;flex:none;display:flex;align-items:center;height:100%;padding:0 10px;color:var(--ink-2);font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
@@ -163,7 +163,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .drawer-head div{flex:1;min-width:0}
 .drawer-head strong{display:block;font-size:15px}
 .drawer-head span{display:block;font-size:12.5px;color:var(--muted)}
-.drawer-home,.drawer li a{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 12px;border-radius:var(--r-sm);text-decoration:none;font-weight:600;font-size:15px;color:var(--ink)}
+.drawer-home,.drawer li a{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 12px;border-radius:var(--r-sm);text-decoration:none;font-weight:600;font-size:16px;color:var(--ink)}
 .drawer-home{color:var(--ink-2)}
 .drawer-home:hover,.drawer li a:hover{background:var(--line-2)}
 .drawer ul{list-style:none;margin:0;padding:0}
@@ -188,19 +188,21 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .scrim.top{z-index:65}
 @keyframes fade{from{opacity:0}}
 body.lock{overflow:hidden}
+body.lock .layout{overflow:hidden}
 
 /* ---------- Responsivo ---------- */
 @media (max-width:359px){
   .layout{padding:0 12px}
+  .appbar-row{padding:0 12px}
   .rows{padding:0 12px}
   .row{gap:10px}
-  .hero-logo{width:74.8px;height:74.8px}
-.hero h1{font-size:23.1px}
-  .brand span{font-size:16.5px}
+  .hero-logo{width:78px;height:78px}
+.hero h1{font-size:24.5px}
+  .brand span{font-size:17.5px}
 }
 @media (min-width:640px){
-  .hero-logo{width:114.4px;height:114.4px}
-.hero h1{font-size:33px}
+  .hero-logo{width:120px;height:120px}
+.hero h1{font-size:35px}
   .bag,.sheet{bottom:16px;border-radius:var(--r-lg);left:16px;right:16px}
 }
 @media (min-width:1024px){
@@ -211,12 +213,12 @@ body.lock{overflow:hidden}
   .menu .rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
   .menu .row:nth-child(2){border-top:0}
   .catlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-  .bag{position:sticky;top:24px;left:auto;right:auto;bottom:auto;transform:none;visibility:visible;max-height:calc(100vh - 48px);border-radius:var(--r-lg);box-shadow:var(--sh-1);margin:40px 0 24px;max-width:none;transition:none}
-  body.in-menu .bag{top:calc(var(--head) + 20px);max-height:calc(100vh - var(--head) - 40px);margin-top:28px}
+  .bag{position:sticky;top:24px;left:auto;right:auto;bottom:auto;transform:none;visibility:visible;max-height:calc(100vh - var(--head) - 48px);max-height:calc(100dvh - var(--head) - 48px);border-radius:var(--r-lg);box-shadow:var(--sh-1);margin:40px 0 24px;max-width:none;transition:none}
+  body.in-menu .bag{top:24px;max-height:calc(100vh - var(--head) - 48px);max-height:calc(100dvh - var(--head) - 48px);margin-top:28px}
   .bag-head::before,.bag-close{display:none}
   .bag-head{padding:18px 20px 8px}
   .bagbar,.bag-ibtn{display:none!important}
   .tabs{padding:0 20px}
-  .appbar-row{padding:0 16px}
+  .appbar-row{padding:0 24px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
