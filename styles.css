@@ -43,13 +43,16 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .appbar .ibtn{width:44px;height:44px}
 .appbar .ibtn svg.i{width:26px;height:26px}
 .dot{position:absolute;top:6px;right:5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--brand);color:var(--ink);font-size:11px;font-weight:700;line-height:17px;text-align:center}
-.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border:0;border-radius:var(--r);background:var(--whatsapp);color:#fff;font-weight:700;font-size:16px;text-decoration:none;transition:background .15s}
+.cta{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;min-height:52px;padding:12px 16px;border:0;line-height:1.25;text-align:center;border-radius:var(--r);background:var(--whatsapp);color:#fff;font-weight:700;font-size:16px;text-decoration:none;transition:background .15s}
 .cta:hover{background:var(--whatsapp-hover)}
 .send-qty{flex:none;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.22);font-size:12px;white-space:nowrap}
-.continue-shopping{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);font-size:15px;font-weight:600}
-.continue-shopping:hover{background:var(--line-2)}
+.continue-shopping{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--brand-strong);border-radius:var(--r);background:var(--brand);color:var(--ink);font-size:15px;font-weight:700;line-height:1.25;text-align:center}
+.continue-shopping:hover{background:var(--brand-strong)}
 .main:focus{outline:none}
-.cta svg.i{width:20px;height:20px}
+.cta > [data-icon]{display:flex;align-items:center;justify-content:center;line-height:0}
+.cta svg.i{display:block;width:22px;height:22px}
+.cta > span:nth-child(2){min-width:0}
+.cta .send-qty{display:flex;align-items:center;justify-content:center;line-height:1.25}
 .cta[aria-disabled="true"]{background:#C9CDD5;pointer-events:none}
 .link-btn{border:0;background:none;color:var(--ink-2);font-size:13px;font-weight:600;padding:8px;text-decoration:underline;text-underline-offset:3px}
 
@@ -130,9 +133,9 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 /* ---------- Barra "Ver sacola" ---------- */
 .bagbar-actions{position:fixed;z-index:35;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;display:grid;gap:8px}
 .bagbar-actions > .continue-shopping{box-shadow:var(--sh-1)}
-.bagbar{position:relative;width:100%;margin:0;height:56px;display:flex;align-items:center;gap:12px;padding:0 18px 0 10px;border:0;border-radius:16px;background:var(--whatsapp);color:#fff;box-shadow:var(--sh-2);font-weight:700;font-size:15px;animation:rise .25s ease}
+.bagbar{position:relative;width:100%;margin:0;min-height:56px;display:flex;align-items:center;gap:12px;padding:12px 16px;line-height:1.25;border:0;border-radius:16px;background:var(--whatsapp);color:#fff;box-shadow:var(--sh-2);font-weight:700;font-size:15px;animation:rise .25s ease}
 .bagbar-qty{min-width:32px;height:32px;padding:0 8px;display:grid;place-items:center;border-radius:10px;background:var(--brand);color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
-.bagbar-label{flex:1;text-align:left;padding-left:8px}
+.bagbar-label{flex:1;text-align:left;min-width:0}
 .bagbar-total{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
 .bagbar.bump{animation:bump .3s ease}
 @keyframes rise{from{transform:translateY(16px);opacity:0}}
@@ -143,6 +146,8 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .bag.open{transform:none;visibility:visible;transition:transform .28s cubic-bezier(.2,.8,.2,1)}
 .bag-head{display:flex;align-items:center;gap:8px;padding:16px calc(var(--bag-inset) + var(--bag-scrollbar)) 8px var(--bag-inset)}
 .bag-clear{margin-left:auto;margin-right:0}
+.bag-close{justify-items:end;padding-right:0}
+.bag-close svg.i{display:block}
 .bag-head h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em}
 .bag-head::before{content:"";position:absolute;top:8px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:4px;background:var(--line)}
 .bag-scroll{flex:1;min-height:0;overflow-y:auto;padding:0 var(--bag-inset);overscroll-behavior:contain}
