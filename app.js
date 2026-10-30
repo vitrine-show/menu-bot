@@ -107,7 +107,7 @@
     MENU.forEach(function (c) {
       h += '<li><a class="cat-link" href="#/cardapio/' + c.id + '"><span class="cat-ico">' + icon(catIcon(c)) + '</span>' +
         '<span class="cat-txt"><strong>' + esc(c.nome) + "</strong></span></a></li>";
-      d += '<li><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + "</a></li>";
+      d += '<li><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + '<span class="drawer-ico">' + icon(catIcon(c)) + '</span><span class="drawer-name">' + esc(c.nome) + "</span></a></li>";
     });
     $("#catList").innerHTML = h;
     $("#drawerList").innerHTML = d;
@@ -123,6 +123,12 @@
       return match;
     });
     return result + esc(name.slice(last));
+  }
+  function descriptionHTML(text) {
+    return String(text).split(/([.!?])\s+(?=[A-ZÁÀÂÃÉÊÍÓÔÕÚÜÇ])/).map(function (part, i) {
+      if (i % 2) return esc(part) + "<br>";
+      return esc(part);
+    }).join("");
   }
   function rowHTML(it) {
     var cls = "row";
@@ -140,8 +146,8 @@
     return '<li class="' + cls + '" data-row="' + it.key + '">' +
       '<div class="row-main">' +
       '<h3 class="row-name">' + productNameHTML(it.nome) + "</h3>" +
-      (description ? '<p class="row-desc">' + esc(description) + "</p>" : "") +
-      (note ? '<p class="row-note">' + esc(note) + "</p>" : "") +
+      (description ? '<p class="row-desc">' + descriptionHTML(description) + "</p>" : "") +
+      (note ? '<p class="row-note">' + descriptionHTML(note) + "</p>" : "") +
       price + "</div>" +
       '<div class="row-ctl" data-ctl="' + it.key + '">' + control(it.key, it.nome) + "</div></li>";
   }

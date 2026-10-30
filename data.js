@@ -15,7 +15,7 @@ window.MENU = [
     ["Porção de Arroz com Alho", 15.9], ["Acréscimo de Bacon e Queijo", 9.9], ["Purê de Batata 300gr", 8], ["Vinagrete 300gr", 8]
   ]}]},
   { id: "hamburguer", nome: "Hambúrguer", icone: "burger", grupos: [{ itens: [
-    ["Hambúrguer Artesanal feito na Brasa", 25, "Pão com gergelim, 120gr de carne bovina feita na brasa, bacon, muçarela, cebola, tomate e alface."]
+    ["Hambúrguer Artesanal Feito na Brasa", 25, "Pão com gergelim, 120gr de carne bovina feita na brasa, bacon, muçarela, cebola, tomate e alface."]
   ]}]},
   { id: "jantinha", nome: "Jantinha", icone: "prato", grupos: [
     { itens: [
@@ -30,7 +30,7 @@ window.MENU = [
       ["Strogonoff de Frango Completo 500gr", 29.9, "Suculentas iscas de frango envolvidos por um molho de strogonoff cremoso, arroz branco com alho frito, e batata palha. Obs: Não possui champignon"]
     ]}
   ]},
-  { id: "natural", nome: "Natural", icone: "copo", grupos: [{ itens: [
+  { id: "natural", nome: "Água de Coco", icone: "copo", grupos: [{ itens: [
     ["Água de Coco", 9]
   ]}]},
   { id: "sucos", nome: "Suco de Frutas", icone: "copo", desc: "Consulte as opções disponíveis", grupos: [{ itens: [
