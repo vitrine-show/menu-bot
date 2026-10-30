@@ -67,7 +67,7 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 
 /* ---------- Layout ---------- */
 .layout{width:100%;max-width:1200px;min-height:0;margin:0 auto;padding:0 16px;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
-.main{min-width:0;padding-bottom:112px}
+.main{min-width:0;padding-bottom:164px}
 
 /* ---------- Início ---------- */
 .home{max-width:720px;margin:0 auto;padding-top:24px}
@@ -128,7 +128,9 @@ svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .vqty{font-size:12px;font-weight:700;color:var(--brand-ink);white-space:nowrap}
 
 /* ---------- Barra "Ver sacola" ---------- */
-.bagbar{position:fixed;z-index:35;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;height:56px;display:flex;align-items:center;gap:12px;padding:0 18px 0 10px;border:0;border-radius:16px;background:var(--whatsapp);color:#fff;box-shadow:var(--sh-2);font-weight:700;font-size:15px;animation:rise .25s ease}
+.bagbar-actions{position:fixed;z-index:35;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;display:grid;gap:8px}
+.bagbar-actions > .continue-shopping{box-shadow:var(--sh-1)}
+.bagbar{position:relative;width:100%;margin:0;height:56px;display:flex;align-items:center;gap:12px;padding:0 18px 0 10px;border:0;border-radius:16px;background:var(--whatsapp);color:#fff;box-shadow:var(--sh-2);font-weight:700;font-size:15px;animation:rise .25s ease}
 .bagbar-qty{min-width:32px;height:32px;padding:0 8px;display:grid;place-items:center;border-radius:10px;background:var(--brand);color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
 .bagbar-label{flex:1;text-align:left;padding-left:8px}
 .bagbar-total{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
@@ -227,7 +229,7 @@ body.lock .layout{overflow:hidden}
   body.in-menu .bag{top:24px;max-height:calc(100vh - var(--head) - 48px);max-height:calc(100dvh - var(--head) - 48px);margin-top:28px}
   .bag-head::before,.bag-close{display:none}
   .bag-head{padding-top:18px}
-  .bagbar,.bag-ibtn{display:none!important}
+  .bagbar-actions,.bagbar,.bag-ibtn{display:none!important}
   .tabs{padding:0 20px}
   .appbar-row{padding:0 24px}
 }

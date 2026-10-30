@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=pedido-verde-1">
+  <link rel="stylesheet" href="styles.css?v=continuar-visivel-2">
 </head>
 <body>
   <!-- Barra superior disponível em todas as telas -->
@@ -84,11 +84,14 @@
   </div>
 
   <!-- Barra flutuante "Finalizar pedido" (celular/tablet) -->
-  <button class="bagbar" id="bagbar" type="button" hidden>
-    <span id="bbQty" hidden>0</span>
-    <span class="bagbar-label">Finalizar pedido</span>
-    <span class="bagbar-total" id="bbTotal">R$ 0,00</span>
-  </button>
+  <div class="bagbar-actions" id="bagbarActions" hidden>
+    <button class="continue-shopping" id="btnContinueBar" type="button">Continuar comprando</button>
+    <button class="bagbar" id="bagbar" type="button" hidden>
+      <span id="bbQty" hidden>0</span>
+      <span class="bagbar-label">Finalizar pedido</span>
+      <span class="bagbar-total" id="bbTotal">R$ 0,00</span>
+    </button>
+  </div>
 
   <!-- Menu lateral (≡) -->
   <nav class="drawer" id="drawer" aria-label="Categorias" aria-hidden="true">
@@ -104,6 +107,6 @@
   <div class="scrim" id="scrim" hidden></div>
 
   <script src="data.js?v=030bfcc51cbd-pedido"></script>
-  <script src="app.js?v=pedido-verde-1"></script>
+  <script src="app.js?v=continuar-visivel-2"></script>
 </body>
 </html>

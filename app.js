@@ -313,6 +313,7 @@
     renderBag();
     var bb = $("#bagbar");
     bb.hidden = t.q === 0;
+    $("#bagbarActions").hidden = t.q === 0;
     $("#bbQty").textContent = t.q; $("#bbTotal").textContent = plural(t.q, "item", "itens") + " · " + brl(t.t);
     bb.setAttribute("aria-label", "Finalizar pedido, " + plural(t.q, "item", "itens") + ", " + brl(t.t));
     var dot = $("#bagDot"); dot.hidden = t.q === 0; dot.textContent = t.q;
@@ -339,12 +340,15 @@
   $("#btnBagTop").addEventListener("click", openBag);
   $("#bagbar").addEventListener("click", openBag);
   $("#btnBagClose").addEventListener("click", closeBag);
-  $("#btnContinue").addEventListener("click", function () {
+  function continueShopping() {
     closeBag();
+    if (location.hash !== "#/") location.hash = "#/";
     var main = $(".main");
     main.setAttribute("tabindex", "-1");
     main.focus({ preventScroll: true });
-  });
+  }
+  $("#btnContinue").addEventListener("click", continueShopping);
+  $("#btnContinueBar").addEventListener("click", continueShopping);
   $("#scrim").addEventListener("click", function () { if (scrimFor === "bag") closeBag(); else closeDrawer(); });
   $("#obs").addEventListener("input", function () { bag.obs = this.value; $("#btnSend").href = waUrl(); });
   $("#btnSend").addEventListener("click", function (e) { e.preventDefault(); if (totals().q) sendOrder(); });
