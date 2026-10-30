@@ -15,7 +15,6 @@
     minus: '<path d="M5 12h14"/>',
     trash: '<path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l.8 11.6A1.5 1.5 0 0 0 8.8 20h6.4a1.5 1.5 0 0 0 1.5-1.4L17.5 7M9.5 7V5.5A1.5 1.5 0 0 1 11 4h2a1.5 1.5 0 0 1 1.5 1.5V7"/>',
     home: '<path d="M4 11 12 4l8 7"/><path d="M6 9.5V19a1 1 0 0 0 1 1h3.5v-5h3v5H17a1 1 0 0 0 1-1V9.5"/>',
-    whatsapp: '<path d="M4.5 19.5l1.1-3.6A8 8 0 1 1 8.4 18.6Z"/><path d="M9.2 8.6c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.5-2.1.3a8 8 0 0 1-5.3-5.3c-.2-.7-.1-1.5.3-2.1Z"/>',
     espeto: '<path d="M3.5 20.5 20.5 3.5"/><rect x="5.6" y="12.4" width="6" height="6" rx="2" transform="rotate(45 8.6 15.4)"/><rect x="9.6" y="8.4" width="6" height="6" rx="2" transform="rotate(45 12.6 11.4)"/><rect x="13.8" y="4.6" width="5" height="5" rx="1.8" transform="rotate(45 16.3 7.1)"/>',
     porcao: '<path d="M3 12h18a9 8 0 0 1-18 0Z"/><path d="M8 8.5c0-1.3 1-1.7 1-3M12 8.5c0-1.3 1-1.7 1-3M16 8.5c0-1.3 1-1.7 1-3"/>',
     burger: '<path d="M4 11c0-3.9 3.6-6.5 8-6.5s8 2.6 8 6.5Z"/><path d="M3 14.5c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M4.5 18h15a0 0 0 0 1 0 0 2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2Z"/>',
@@ -27,7 +26,10 @@
     taca: '<path d="M4.5 4.5h15L12 13Z"/><path d="M12 13v7M8.5 20h7M7 7.3h10"/>',
     dose: '<path d="M6.5 5h11l-1.5 14a1.3 1.3 0 0 1-1.3 1.1H9.3A1.3 1.3 0 0 1 8 19Z"/><path d="M7.2 11h9.6"/>'
   };
-  function icon(n, cls) { return '<svg class="i' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + (P[n] || "") + "</svg>"; }
+  function icon(n, cls) {
+    // Símbolo oficial branco: pacote WhatsApp Brand Resource Center, Meta (2026).
+    if (n === "whatsapp") return '<img src="whatsapp-official.svg" width="22" height="22" alt="" aria-hidden="true" style="display:block;flex:none">';
+    return '<svg class="i' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + (P[n] || "") + "</svg>"; }
   function paintIcons(root) {
     $$("[data-icon]", root).forEach(function (el) {
       if (el.getAttribute("data-painted")) return;
