@@ -23,11 +23,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=b67ca11c6ad1">
+  <link rel="stylesheet" href="styles.css?v=ed37c58d7021-final">
 </head>
 <body>
-  <!-- Barra superior (dentro do cardápio) -->
-  <header class="appbar" id="appbar" hidden>
+  <!-- Barra superior disponível em todas as telas -->
+  <header class="appbar" id="appbar">
     <div class="appbar-row">
       <button class="ibtn" id="btnMenu" type="button" aria-label="Categorias" aria-controls="drawer" aria-expanded="false" data-icon="menu"></button>
       <a class="brand" href="#/" aria-label="Início">
@@ -49,7 +49,10 @@
             <p class="hero-sub">Churrasco &amp; Cerveja</p>
           </div>
         </div>
-        <p class="howto">AQUI A VIDA TEM MAIS SABOR</p>
+        <div class="hero-message">
+          <p class="menu-title">MENU DIGITAL</p>
+          <p class="howto">AQUI A VIDA TEM MAIS SABOR</p>
+        </div>
         <ul class="catlist" id="catList" aria-label="Categorias"></ul>
       </section>
 
@@ -109,7 +112,7 @@
 
   <div class="scrim" id="scrim" hidden></div>
 
-  <script src="data.js?v=b67ca11c6ad1"></script>
-  <script src="app.js?v=b67ca11c6ad1"></script>
+  <script src="data.js?v=ed37c58d7021-final"></script>
+  <script src="app.js?v=ed37c58d7021-final"></script>
 </body>
 </html>

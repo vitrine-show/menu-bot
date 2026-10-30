@@ -14,7 +14,6 @@
     plus: '<path d="M12 5v14M5 12h14"/>',
     minus: '<path d="M5 12h14"/>',
     trash: '<path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l.8 11.6A1.5 1.5 0 0 0 8.8 20h6.4a1.5 1.5 0 0 0 1.5-1.4L17.5 7M9.5 7V5.5A1.5 1.5 0 0 1 11 4h2a1.5 1.5 0 0 1 1.5 1.5V7"/>',
-    chev: '<path d="m9 6 6 6-6 6"/>',
     home: '<path d="M4 11 12 4l8 7"/><path d="M6 9.5V19a1 1 0 0 0 1 1h3.5v-5h3v5H17a1 1 0 0 0 1-1V9.5"/>',
     whatsapp: '<path d="M4.5 19.5l1.1-3.6A8 8 0 1 1 8.4 18.6Z"/><path d="M9.2 8.6c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.5-2.1.3a8 8 0 0 1-5.3-5.3c-.2-.7-.1-1.5.3-2.1Z"/>',
     espeto: '<path d="M3.5 20.5 20.5 3.5"/><rect x="5.6" y="12.4" width="6" height="6" rx="2" transform="rotate(45 8.6 15.4)"/><rect x="9.6" y="8.4" width="6" height="6" rx="2" transform="rotate(45 12.6 11.4)"/><rect x="13.8" y="4.6" width="5" height="5" rx="1.8" transform="rotate(45 16.3 7.1)"/>',
@@ -108,27 +107,41 @@
     MENU.forEach(function (c) {
       h += '<li><a class="cat-link" href="#/cardapio/' + c.id + '"><span class="cat-ico">' + icon(catIcon(c)) + '</span>' +
         '<span class="cat-txt"><strong>' + esc(c.nome) + "</strong></span></a></li>";
-      var hasSub = c.grupos.some(function (g) { return g.id; });
-      d += '<li' + (hasSub ? ' class="has-sub"' : "") + '><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + "</a>" +
-        (hasSub ? '<button type="button" class="exp" data-exp="' + c.id + '" aria-expanded="false" aria-label="Subcategorias de ' + esc(c.nome) + '">' + icon("chev") + "</button>" : "") + "</li>";
-      c.grupos.forEach(function (g) {
-        if (g.id) d += '<li class="sub" data-parent="' + c.id + '" hidden><a href="#/cardapio/' + g.id + '">' + esc(g.titulo) + "</a></li>";
-      });
+      d += '<li><a href="#/cardapio/' + c.id + '" data-cat="' + c.id + '">' + icon(catIcon(c)) + esc(c.nome) + "</a></li>";
     });
     $("#catList").innerHTML = h;
     $("#drawerList").innerHTML = d;
   }
 
   /* ---------- Cardápio ---------- */
+  function productNameHTML(name) {
+    var pattern = /\b(?:(?:Lata|Caixa)\s+\d+(?:[.,]\d+)?\s*(?:ml|l)|Long\s+Neck|Latão|KS|\d+(?:[.,]\d+)?\s*(?:gr|g|ml|l|unid\.?|doses?))(?=\s|$)/gi;
+    var result = "", last = 0;
+    String(name).replace(pattern, function (match, offset) {
+      result += esc(name.slice(last, offset)) + '<span class="product-spec">' + esc(match) + "</span>";
+      last = offset + match.length;
+      return match;
+    });
+    return result + esc(name.slice(last));
+  }
   function rowHTML(it) {
     var cls = "row";
     var inBag = qty(it.key);
     if (inBag) cls += " in";
     var price = '<span class="row-price">' + brl(it.preco) + "</span>";
+    var description = it.desc || "", note = it.nota || "";
+    if (it.cat.id === "jantinha") {
+      var noteAt = description.indexOf("Observação:");
+      if (noteAt >= 0) {
+        note = description.slice(noteAt);
+        description = description.slice(0, noteAt).trim();
+      }
+    }
     return '<li class="' + cls + '" data-row="' + it.key + '">' +
       '<div class="row-main">' +
-      '<h3 class="row-name">' + esc(it.nome) + "</h3>" +
-      (it.nota ? '<p class="row-note">' + esc(it.nota) + "</p>" : it.desc ? '<p class="row-desc">' + esc(it.desc) + "</p>" : "") +
+      '<h3 class="row-name">' + productNameHTML(it.nome) + "</h3>" +
+      (description ? '<p class="row-desc">' + esc(description) + "</p>" : "") +
+      (note ? '<p class="row-note">' + esc(note) + "</p>" : "") +
       price + "</div>" +
       '<div class="row-ctl" data-ctl="' + it.key + '">' + control(it.key, it.nome) + "</div></li>";
   }
@@ -136,7 +149,8 @@
     var h = "", t = "";
     MENU.forEach(function (c) {
       t += '<a class="tab" href="#/cardapio/' + c.id + '" data-tab="' + c.id + '">' + esc(c.nome) + "</a>";
-      h += '<section class="sec" id="sec-' + c.id + '" data-sec="' + c.id + '"><div class="sec-head"><h2>' + esc(c.nome) + "</h2></div>";
+      h += '<section class="sec" id="sec-' + c.id + '" data-sec="' + c.id + '"><div class="sec-head"><h2>' + esc(c.nome) + "</h2></div>" +
+        (c.desc ? '<p class="category-note">' + esc(c.desc) + "</p>" : "");
       c.grupos.forEach(function (g) {
         h += '<div class="grp"' + (g.id ? ' id="grp-' + g.id + '"' : "") + ">" + (g.titulo ? '<h3 class="grp-title">' + esc(g.titulo) + "</h3>" : "") + '<ul class="rows">';
         g.itens.forEach(function (it) { h += rowHTML(it); });
@@ -182,7 +196,8 @@
     closeDrawer();
     if (parts[0] !== "cardapio") {
       view = "home";
-      $("#home").hidden = false; $("#menu").hidden = true; $("#appbar").hidden = true;
+      $("#home").hidden = false; $("#menu").hidden = true; $("#appbar").hidden = false;
+      setActive(null);
       document.body.classList.remove("in-menu");
       document.title = "Esquina do Espeto - Churrasco & Cerveja";
       window.scrollTo(0, 0);
@@ -206,12 +221,7 @@
   var scrimFor = null;
   function showScrim(kind) { var s = $("#scrim"); s.hidden = false; s.className = "scrim" + (kind === "opts" ? " top" : ""); scrimFor = kind; }
   function hideScrim() { $("#scrim").hidden = true; scrimFor = null; }
-  function collapseDrawer() {
-    $$("#drawerList li.sub").forEach(function (li) { li.hidden = true; });
-    $$("#drawerList .exp").forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
-  }
   function openDrawer() {
-    collapseDrawer();
     $("#drawer").classList.add("open"); $("#drawer").setAttribute("aria-hidden", "false");
     $("#btnMenu").setAttribute("aria-expanded", "true"); showScrim("drawer");
     setTimeout(function () { $("#btnDrawerClose").focus(); }, 60);
@@ -219,7 +229,7 @@
   function closeDrawer() {
     if (!$("#drawer").classList.contains("open")) return;
     $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden", "true");
-    $("#btnMenu").setAttribute("aria-expanded", "false"); hideScrim(); collapseDrawer();
+    $("#btnMenu").setAttribute("aria-expanded", "false"); hideScrim();
   }
 
   /* ---------- Sacola (painel) ---------- */
@@ -316,13 +326,6 @@
   $("#btnMenu").addEventListener("click", openDrawer);
   $("#btnDrawerClose").addEventListener("click", closeDrawer);
   $("#drawer").addEventListener("click", function (e) {
-    var x = e.target.closest(".exp");
-    if (x) {
-      var open = x.getAttribute("aria-expanded") !== "true";
-      x.setAttribute("aria-expanded", open ? "true" : "false");
-      $$('#drawerList li.sub[data-parent="' + x.getAttribute("data-exp") + '"]').forEach(function (li) { li.hidden = !open; });
-      return;
-    }
     var a = e.target.closest("a"); if (!a) return;
     if (a.getAttribute("href") === location.hash) { e.preventDefault(); closeDrawer(); jump(a.getAttribute("href").split("/")[2], true); }
   });

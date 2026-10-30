@@ -31,8 +31,11 @@ window.MENU = [
     ]}
   ]},
   { id: "natural", nome: "Natural", icone: "copo", grupos: [{ itens: [
-    ["Água de Coco", 9],
-    { nome: "Suco de Frutas", desc: "Consulte as opções disponíveis", variacoes: [["Copo 330ml", 12], ["Jarra 1L", 25]] }
+    ["Água de Coco", 9]
+  ]}]},
+  { id: "sucos", nome: "Suco de Frutas", icone: "copo", desc: "Consulte as opções disponíveis", grupos: [{ itens: [
+    { nome: "Copo 330ml", msgNome: "Suco de Frutas - Copo 330ml", preco: 12 },
+    { nome: "Jarra 1L", msgNome: "Suco de Frutas - Jarra 1L", preco: 25 }
   ]}]},
   { id: "bebidas", nome: "Bebidas", icone: "lata", grupos: [{ itens: [
     ["Coca-Cola KS", 7], ["Sprite KS", 7], ["Fanta KS", 7], ["Coca-Cola Lata 350ml", 8], ["Guaraná Lata 350ml", 7],
