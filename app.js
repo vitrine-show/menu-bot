@@ -297,6 +297,7 @@
     $("#btnClear").hidden = t.q === 0;
     $("#bagCount").textContent = plural(t.q, "item", "itens");
     $("#bagTotal").textContent = brl(t.t);
+    $("#sendQty").textContent = plural(t.q, "item", "itens");
     $("#btnSend").href = t.q ? waUrl() : "#";
   }
 
@@ -338,6 +339,12 @@
   $("#btnBagTop").addEventListener("click", openBag);
   $("#bagbar").addEventListener("click", openBag);
   $("#btnBagClose").addEventListener("click", closeBag);
+  $("#btnContinue").addEventListener("click", function () {
+    closeBag();
+    var main = $(".main");
+    main.setAttribute("tabindex", "-1");
+    main.focus({ preventScroll: true });
+  });
   $("#scrim").addEventListener("click", function () { if (scrimFor === "bag") closeBag(); else closeDrawer(); });
   $("#obs").addEventListener("input", function () { bag.obs = this.value; $("#btnSend").href = waUrl(); });
   $("#btnSend").addEventListener("click", function (e) { e.preventDefault(); if (totals().q) sendOrder(); });
