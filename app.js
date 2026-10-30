@@ -72,7 +72,7 @@
 
   /* ---------- Sacola ---------- */
   // As escolhas duram apenas enquanto esta página permanece aberta, sem recarregar.
-  var bag = { itens: {}, ordem: [], nome: "", obs: "" };
+  var bag = { itens: {}, ordem: [], obs: "" };
   function qty(k) { return bag.itens[k] || 0; }
   function setQty(k, n) {
     n = Math.max(0, Math.min(99, n));
@@ -340,7 +340,6 @@
   $("#btnBagClose").addEventListener("click", closeBag);
   $("#scrim").addEventListener("click", function () { if (scrimFor === "bag") closeBag(); else closeDrawer(); });
   $("#obs").addEventListener("input", function () { bag.obs = this.value; $("#btnSend").href = waUrl(); });
-  $("#nome").addEventListener("input", function () { bag.nome = this.value; $("#btnSend").href = waUrl(); });
   $("#btnSend").addEventListener("click", function (e) { e.preventDefault(); if (totals().q) sendOrder(); });
   $("#btnClear").addEventListener("click", function () {
     if (!window.confirm("Limpar o pedido?")) return;
@@ -356,6 +355,17 @@
   /* ---------- Início ---------- */
   paintIcons(document);
   renderHome(); renderMenu();
-  $("#obs").value = bag.obs || ""; $("#nome").value = bag.nome || "";
+  $("#obs").value = bag.obs || "";
   syncBagAria(); refresh(); route();
+  // Compensa a largura da barra de rolagem para alinhar os blocos do pedido.
+  var bagScroll = $(".bag-scroll");
+  function syncBagInsets() {
+    $("#bag").style.setProperty("--bag-scrollbar", Math.max(0, bagScroll.offsetWidth - bagScroll.clientWidth) + "px");
+  }
+  if ("ResizeObserver" in window) {
+    var bagSizeObserver = new ResizeObserver(syncBagInsets);
+    bagSizeObserver.observe(bagScroll);
+  }
+  window.addEventListener("resize", syncBagInsets);
+  syncBagInsets();
 })();

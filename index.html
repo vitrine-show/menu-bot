@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=caedec794fad-ajustes">
+  <link rel="stylesheet" href="styles.css?v=030bfcc51cbd-pedido">
 </head>
 <body>
   <!-- Barra superior disponível em todas as telas -->
@@ -32,7 +32,7 @@
       <button class="ibtn" id="btnMenu" type="button" aria-label="Categorias" aria-controls="drawer" aria-expanded="false" data-icon="menu"></button>
       <a class="brand" href="#/" aria-label="Início">
         <img src="logo-web.svg" alt="" width="32" height="32">
-        <span>Esquina do Espeto</span>
+        <span>ESQUINA DO ESPETO</span>
       </a>
       <button class="ibtn bag-ibtn" id="btnBagTop" type="button" aria-label="Ver pedido" data-icon="bag"><span class="dot" id="bagDot" hidden></span></button>
     </div>
@@ -70,9 +70,7 @@
         <ul class="bag-list" id="bagList"></ul>
         <div class="bag-form" id="bagForm" hidden>
           <label for="obs">Observações</label>
-          <textarea id="obs" rows="3" placeholder="Ex.: espeto da jantinha de frango, sem cebola, mesa 4"></textarea>
-          <label for="nome">Seu nome <span>(opcional)</span></label>
-          <input id="nome" type="text" autocomplete="name" placeholder="Como podemos te chamar?">
+          <textarea id="obs" rows="3"></textarea>
         </div>
       </div>
       <div class="bag-foot" id="bagFoot" hidden>
@@ -80,7 +78,6 @@
         <a class="cta" id="btnSend" href="#" rel="noopener">
           <span data-icon="whatsapp" aria-hidden="true"></span>Finalizar pedido
         </a>
-        <p class="cta-note">Você confirma o envio no WhatsApp do restaurante.</p>
       </div>
     </aside>
   </div>
@@ -105,7 +102,7 @@
 
   <div class="scrim" id="scrim" hidden></div>
 
-  <script src="data.js?v=caedec794fad-ajustes"></script>
-  <script src="app.js?v=caedec794fad-ajustes"></script>
+  <script src="data.js?v=030bfcc51cbd-pedido"></script>
+  <script src="app.js?v=030bfcc51cbd-pedido"></script>
 </body>
 </html>
